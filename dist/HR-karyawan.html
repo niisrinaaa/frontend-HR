@@ -12,6 +12,11 @@
     <!-- Favicon-->
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
+    <!-- Jquery Core Js -->
+    <script src="assets/bundles/libscripts.bundle.js"></script>
+    <!-- Plugin Js-->
+    <script src="assets/bundles/apexcharts.bundle.js"></script>
+    <script src="assets/bundles/dataTables.bundle.js"></script>
   </head>
 
   <body data-mytask="theme-indigo">
@@ -36,7 +41,7 @@
                   d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
                 />
                 <path
-                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"
                 />
               </svg>
             </span>
@@ -214,7 +219,7 @@
                     class="input-group-text add-member-top"
                     id="addon-wrappingone"
                     data-bs-toggle="modal"
-                    data-bs-target="#addUser"
+                    data-bs-target="#addholiday"
                   >
                     <i class="fa fa-plus"></i>
                   </button>
@@ -290,7 +295,9 @@
                             >
                               <button
                                 type="button"
-                                class="btn btn-outline-secondary"
+                                class="btn btn-outline-secondary edit-btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editholiday"
                               >
                                 <i class="icofont-edit text-success"></i>
                               </button>
@@ -337,80 +344,73 @@
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label"
+                  <label for="namaKaryawan" class="form-label"
                     >Nama Karyawan</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput1"
+                    id="namaKaryawan"
                     placeholder="Nama Karyawan"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput2778" class="form-label"
+                  <label for="divisiKaryawan" class="form-label"
                     >Divisi Karyawan</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput2778"
+                    id="divisiKaryawan"
                     placeholder="Divisi"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput2" class="form-label"
+                  <label for="jabatanKaryawan" class="form-label"
                     >Jabatan Karyawan</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput2"
+                    id="jabatanKaryawan"
                     placeholder="Jabatan"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput3" class="form-label"
-                    >Gender</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleFormControlInput3"
-                    placeholder="Gender"
-                  />
+                  <label for="genderKaryawan" class="form-label">Gender</label>
+                  <select class="form-control" id="genderKaryawan">
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput4" class="form-label"
-                    >No.Telp</label
-                  >
+                  <label for="telpKaryawan" class="form-label">No.Telp</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput4"
+                    id="telpKaryawan"
                     placeholder="No.Telp"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput5" class="form-label"
-                    >Email</label
-                  >
+                  <label for="emailKaryawan" class="form-label">Email</label>
                   <input
                     type="email"
                     class="form-control"
-                    id="exampleFormControlInput5"
+                    id="emailKaryawan"
                     placeholder="Email"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput6" class="form-label"
+                  <label for="passwordKaryawan" class="form-label"
                     >Password default</label
                   >
                   <input
                     type="password"
                     class="form-control"
-                    id="exampleFormControlInput6"
+                    id="passwordKaryawan"
                     placeholder="Password default"
+                    value="password123"
                   />
                 </div>
               </div>
@@ -420,9 +420,15 @@
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
-                  Selesai
+                  Batal
                 </button>
-                <button type="submit" class="btn btn-primary">Tambah</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="tambahKaryawanBtn"
+                >
+                  Tambah
+                </button>
               </div>
             </div>
           </div>
@@ -451,27 +457,44 @@
                 ></button>
               </div>
               <div class="modal-body">
+                <input type="hidden" id="editId" />
                 <div class="mb-3">
-                  <label for="exampleFormControlInputname" class="form-label"
-                    >Holiday Name</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleFormControlInputname"
-                    value="Republic Day"
-                  />
+                  <label for="editNama" class="form-label">Nama Karyawan</label>
+                  <input type="text" class="form-control" id="editNama" />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput0243" class="form-label"
-                    >Holiday Date</label
+                  <label for="editDivisi" class="form-label"
+                    >Divisi Karyawan</label
                   >
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="exampleFormControlInput0243"
-                    value="2021-01-26"
-                  />
+                  <input type="text" class="form-control" id="editDivisi" />
+                </div>
+                <div class="mb-3">
+                  <label for="editJabatan" class="form-label"
+                    >Jabatan Karyawan</label
+                  >
+                  <input type="text" class="form-control" id="editJabatan" />
+                </div>
+                <div class="mb-3">
+                  <label for="editGender" class="form-label">Gender</label>
+                  <select class="form-control" id="editGender">
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="editTelp" class="form-label">No.Telp</label>
+                  <input type="text" class="form-control" id="editTelp" />
+                </div>
+                <div class="mb-3">
+                  <label for="editEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="editEmail" />
+                </div>
+                <div class="mb-3">
+                  <label for="editStatus" class="form-label">Status</label>
+                  <select class="form-control" id="editStatus">
+                    <option value="Aktif">Aktif</option>
+                    <option value="Tidak Aktif">Tidak Aktif</option>
+                  </select>
                 </div>
               </div>
               <div class="modal-footer">
@@ -480,9 +503,15 @@
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
-                  Done
+                  Batal
                 </button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="simpanEditBtn"
+                >
+                  Simpan
+                </button>
               </div>
             </div>
           </div>
@@ -490,28 +519,107 @@
       </div>
     </div>
 
-    <!-- Jquery Core Js -->
-    <script src="assets/bundles/libscripts.bundle.js"></script>
-
-    <!-- Plugin Js-->
-    <script src="assets/bundles/apexcharts.bundle.js"></script>
+    <!-- Jquery Page Js -->
     <script>
-      // project data table
       $(document).ready(function () {
-        $("#myProjectTable")
-          .addClass("nowrap")
-          .DataTable({
-            responsive: true,
-            columnDefs: [{ targets: [-1, -3], className: "dt-body-right" }],
-          });
-        $(".deleterow").on("click", function () {
-          var tablename = $(this).closest("table").DataTable();
-          tablename.row($(this).parents("tr")).remove().draw();
+        // Inisialisasi DataTable
+        var table = $("#myProjectTable").DataTable({
+          responsive: true,
+          columnDefs: [{ targets: [-1, -3], className: "dt-body-right" }],
+        });
+
+        // Variabel untuk menyimpan data yang sedang diedit
+        var editingRow = null;
+
+        // Fungsi untuk menambahkan karyawan
+        $("#tambahKaryawanBtn").click(function () {
+          // Ambil nilai dari input
+          const nama = $("#namaKaryawan").val();
+          const divisi = $("#divisiKaryawan").val();
+          const jabatan = $("#jabatanKaryawan").val();
+          const gender = $("#genderKaryawan").val();
+          const notelp = $("#telpKaryawan").val();
+          const email = $("#emailKaryawan").val();
+          const password = $("#passwordKaryawan").val();
+
+          // Validasi input
+          if (!nama || !divisi || !jabatan || !notelp || !email) {
+            alert("Harap isi semua field yang diperlukan!");
+            return;
+          }
+
+          // Generate ID baru (contoh sederhana)
+          const newId = "00" + (table.rows().count() + 1);
+
+          // Tambahkan baris baru ke tabel
+          table.row
+            .add([
+              table.rows().count() + 1,
+              newId,
+              nama,
+              divisi,
+              jabatan,
+              "Aktif",
+              notelp,
+              email,
+              `<div class="btn-group" role="group">
+              <button type="button" class="btn btn-outline-secondary edit-btn" data-bs-toggle="modal" data-bs-target="#editholiday">
+                <i class="icofont-edit text-success"></i>
+              </button>
+              <button type="button" class="btn btn-outline-secondary deleterow">
+                <i class="icofont-ui-delete text-danger"></i>
+              </button>
+            </div>`,
+            ])
+            .draw();
+
+          // Reset form dan tutup modal
+          $("#addholiday form")[0].reset();
+          $("#addholiday").modal("hide");
+        });
+
+        // Fungsi untuk mengisi form edit saat tombol edit diklik
+        $("#myProjectTable").on("click", ".edit-btn", function () {
+          const row = $(this).closest("tr");
+          const rowData = table.row(row).data();
+
+          // Simpan referensi baris yang sedang diedit
+          editingRow = row;
+
+          // Isi form edit dengan data dari baris yang dipilih
+          $("#editId").val(rowData[1]);
+          $("#editNama").val(rowData[2]);
+          $("#editDivisi").val(rowData[3]);
+          $("#editJabatan").val(rowData[4]);
+          $("#editStatus").val(rowData[5]);
+          $("#editTelp").val(rowData[6]);
+          $("#editEmail").val(rowData[7]);
+        });
+
+        // Fungsi untuk menyimpan perubahan edit
+        $("#simpanEditBtn").click(function () {
+          if (!editingRow) return;
+
+          // Update data di tabel
+          table.cell(editingRow, 2).data($("#editNama").val());
+          table.cell(editingRow, 3).data($("#editDivisi").val());
+          table.cell(editingRow, 4).data($("#editJabatan").val());
+          table.cell(editingRow, 5).data($("#editStatus").val());
+          table.cell(editingRow, 6).data($("#editTelp").val());
+          table.cell(editingRow, 7).data($("#editEmail").val());
+
+          // Tutup modal edit
+          $("#editholiday").modal("hide");
+          editingRow = null;
+        });
+
+        // Fungsi untuk menghapus baris
+        $("#myProjectTable").on("click", ".deleterow", function () {
+          if (confirm("Apakah Anda yakin ingin menghapus karyawan ini?")) {
+            table.row($(this).parents("tr")).remove().draw();
+          }
         });
       });
     </script>
-    <!-- Jquery Page Js -->
-    <script src="../js/template.js"></script>
-    <script src="../js/page/hr.js"></script>
   </body>
 </html>
