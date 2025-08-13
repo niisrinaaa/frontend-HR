@@ -61,7 +61,7 @@
               >
             </li>
             <li class="collapsed">
-              <a class="m-link" href="calendar.html">
+              <a class="m-link" href="HR-Absensi.html">
                 <i class="icofont-contrast"></i> <span>Absensi</span></a
               >
             </li>
@@ -90,13 +90,13 @@
                   >
                 </li>
                 <li>
-                  <a class="ms-link" href="ticket-detail.html">
+                  <a class="ms-link" href="HR-edit-kpi.html">
                     <span>Edit</span></a
                   >
                 </li>
                 <li>
-                  <a class="ms-link" href="ticket-detail.html">
-                    <span>Nilai Karyawan</span></a
+                  <a class="ms-link" href="HR-Penilai.html">
+                    <span>Penilai</span></a
                   >
                 </li>
               </ul>
@@ -234,89 +234,90 @@
         <!-- tabel -->
         <div class="body d-flex py-lg-3 py-md-2">
           <div class="container-xxl">
-            <div class="row align-items-center">
-              <div class="border-0 mb-4">
-                <div
-                  class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap"
-                >
-                  <h3 class="fw-bold mb-0">Karyawan</h3>
-                  <div class="col-auto d-flex w-sm-100">
+            <!-- Header Section -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card-header bg-transparent border-bottom px-0 py-3">
+                  <div
+                    class="d-flex justify-content-between align-items-center flex-wrap"
+                  >
+                    <h3 class="fw-bold mb-0">Data Karyawan</h3>
                     <button
                       type="button"
-                      class="btn btn-dark btn-set-task w-sm-100"
+                      class="btn btn-primary"
                       data-bs-toggle="modal"
                       data-bs-target="#addholiday"
                     >
-                      <i class="icofont-plus-circle me-2 fs-6"></i>Tambah
-                      Karyawan
+                      <i class="icofont-plus-circle me-2"></i>Tambah Karyawan
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Row end  -->
-            <div class="row clearfix g-3">
-              <div class="col-sm-12">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <table
-                      id="myProjectTable"
-                      class="table table-hover align-middle mb-0"
-                      style="width: 100%"
-                    >
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>Id</th>
-                          <th>Nama</th>
-                          <th>Divisi</th>
-                          <th>Jabatan</th>
-                          <th>Status</th>
-                          <th>No.telp</th>
-                          <th>Email</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>01</td>
-                          <td>001</td>
-                          <td>Herlambang</td>
-                          <td>Marketing</td>
-                          <td>karyawan</td>
-                          <td>Aktif</td>
-                          <td>0838583829</td>
-                          <td>herlambang@gmail.com</td>
-                          <td>
-                            <div
-                              class="btn-group"
-                              role="group"
-                              aria-label="Basic outlined example"
-                            >
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary edit-btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#editholiday"
-                              >
-                                <i class="icofont-edit text-success"></i>
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary deleterow"
-                              >
-                                <i class="icofont-ui-delete text-danger"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+
+            <!-- Table Section -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table
+                        id="myProjectTable"
+                        class="table table-hover align-middle mb-0"
+                        style="width: 100%"
+                      >
+                        <thead class="table-light">
+                          <tr>
+                            <th width="5%">No</th>
+                            <th width="8%">ID</th>
+                            <th>Nama</th>
+                            <th>Divisi</th>
+                            <th>Jabatan</th>
+                            <th width="10%">Status</th>
+                            <th>No. Telp</th>
+                            <th>Email</th>
+                            <th width="12%">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>01</td>
+                            <td>001</td>
+                            <td>Herlambang</td>
+                            <td>
+                              <span class="badge bg-info">Marketing</span>
+                            </td>
+                            <td>Karyawan</td>
+                            <td><span class="badge bg-success">Aktif</span></td>
+                            <td>0838583829</td>
+                            <td>herlambang@gmail.com</td>
+                            <td>
+                              <div class="d-flex gap-2">
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-outline-primary edit-btn"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#editholiday"
+                                >
+                                  <i class="icofont-edit"></i> Edit
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-sm btn-outline-danger deleterow"
+                                >
+                                  <i class="icofont-ui-delete"></i> Hapus
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          <!-- Tambahan baris data lainnya bisa ditambahkan di sini -->
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Row End -->
           </div>
         </div>
 
@@ -519,6 +520,8 @@
       </div>
     </div>
 
+    <script src="../js/template.js"></script>
+    
     <!-- Jquery Page Js -->
     <script>
       $(document).ready(function () {
