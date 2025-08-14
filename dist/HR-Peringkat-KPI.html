@@ -7,17 +7,47 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Peringkat</title>
+    <title>index</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <!-- Favicon-->
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
-    <!-- DataTables CSS -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"
-    />
+    <style>
+      /* Animasi untuk dropdown */
+      .sub-menu.collapsing {
+        transition: height 0.3s ease, opacity 0.3s ease;
+      }
+
+      .sub-menu.collapse:not(.show) {
+        display: none;
+      }
+
+      .sub-menu.collapse.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk arrow icon */
+      .m-link[aria-expanded="true"] .arrow {
+        transform: rotate(180deg);
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+    </style>
+
+    <!-- style peringkat kpi -->
     <style>
       .dropdown-toggle::after {
         display: none;
@@ -50,69 +80,95 @@
                   d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
                 />
                 <path
-                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"
                 />
               </svg>
             </span>
             <span class="logo-text">Hriss</span>
           </a>
-          <!-- Menu: main ul -->
 
+          <!-- Menu: main ul -->
           <ul class="menu-list flex-grow-1 mt-3">
             <li class="collapsed">
               <a class="m-link" href="HR-dashboard.html">
-                <i class="icofont-home fs-5"></i> <span>Dashboard</span></a
-              >
+                <i class="icofont-home fs-5"></i> <span>Dashboard</span>
+              </a>
             </li>
             <li class="collapsed">
-              <a class="m-link" href="HR-karyawan.html">
-                <i class="icofont-users-alt-5"></i> <span>Karyawan</span></a
-              >
-            </li>
-            <li class="collapsed">
-              <a class="m-link" href="HR-Absensi.html">
-                <i class="icofont-contrast"></i> <span>Absensi</span></a
-              >
-            </li>
-            <li class="collapsed">
-              <a class="m-link" href="HR-Divisi.html">
-                <i class="icofont-contrast"></i> <span>Divisi</span></a
-              >
+              <a class="m-link" href="HR-Penilai.html">
+                <i class="icofont-users-alt-5"></i>
+                <span>Penilaian Karyawan</span>
+              </a>
             </li>
             <li class="collapsed">
               <a
                 class="m-link"
                 data-bs-toggle="collapse"
-                data-bs-target="#tikit-Components"
+                data-bs-target="#history-components"
                 href="#"
               >
-                <i class="icofont-ui-calculator"></i> <span>Nilai KPI</span>
+                <i class="icofont-history"></i> <span>History</span>
                 <span
                   class="arrow icofont-dotted-down ms-auto text-end fs-5"
-                ></span
-              ></a>
+                ></span>
+              </a>
               <!-- Menu: Sub menu ul -->
-              <ul class="sub-menu collapse" id="tikit-Components">
+              <ul
+                class="sub-menu collapse"
+                id="history-components"
+                style="transition: all 0.3s ease"
+              >
                 <li>
-                  <a class="ms-link" href="HR-Peringkat-KPI.html">
-                    <span>Peringkat</span></a
+                  <a class="ms-link" href="HR-Absensi.html"
+                    ><span>Laporan Hasil Absensi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Peringkat-KPI.html"
+                    ><span>Laporan Hasil KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#masterdata-components"
+                href="#"
+              >
+                <i class="icofont-ui-calculator"></i> <span>Master Data</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="masterdata-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-karyawan.html"
+                    ><span>Karyawan</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Divisi.html"
+                    ><span>Divisi</span></a
                   >
                 </li>
                 <li>
                   <a class="ms-link" href="HR-edit-kpi.html">
-                    <span>Edit</span></a
-                  >
-                </li>
-                <li>
-                  <a class="ms-link" href="HR-Penilai.html">
-                    <span>Penilai</span></a
+                    <span>Penilaian KPI</span></a
                   >
                 </li>
               </ul>
             </li>
           </ul>
 
-          <!-- Menu: menu collepce btn -->
+          <!-- Menu: menu collapse btn -->
           <button
             type="button"
             class="btn btn-link sidebar-mini-btn text-light"
@@ -179,15 +235,17 @@
                         <a
                           href="ui-elements/auth-signup.html"
                           class="list-group-item list-group-item-action border-0"
-                          ><i class="icofont-contact-add fs-5 me-3"></i>Edit
-                          profil diri</a
                         >
+                          <i class="icofont-contact-add fs-5 me-3"></i>Edit
+                          profil diri
+                        </a>
                         <div><hr class="dropdown-divider border-dark" /></div>
                         <a
                           href="ui-elements/auth-signin.html"
                           class="list-group-item list-group-item-action border-0"
-                          ><i class="icofont-logout fs-6 me-3"></i>Signout</a
                         >
+                          <i class="icofont-logout fs-6 me-3"></i>Signout
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -239,8 +297,6 @@
         </div>
 
         <!-- Main content-->
-
-        <!-- tabel -->
         <div class="body d-flex py-lg-3 py-md-2">
           <div class="container-xxl">
             <div class="row align-items-center">
@@ -573,11 +629,10 @@
             <!-- Row End -->
           </div>
         </div>
-
-        <!-- edit -->
       </div>
     </div>
 
+    <!-- Jquery Core Js -->
     <!-- Jquery Core Js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/bundles/libscripts.bundle.js"></script>
@@ -682,7 +737,7 @@
 
           // Terapkan sorting berdasarkan Peringkat
           if (activeFilters.peringkat === "Terbaik") {
-            table.order([7, "desc"]).draw();  
+            table.order([7, "desc"]).draw();
           } else if (activeFilters.peringkat === "Terburuk") {
             table.order([7, "asc"]).draw();
           }

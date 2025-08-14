@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
-  <!-- Mirrored from pixelwibes.com/template/my-task/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Aug 2025 05:29:00 GMT -->
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -8,11 +7,168 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Halaman HR</title>
+    <title>index</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <!-- Favicon-->
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
+    <!-- style dropdown -->
+    <style>
+      /* Animasi untuk dropdown */
+      .sub-menu.collapsing {
+        transition: height 0.3s ease, opacity 0.3s ease;
+      }
+
+      .sub-menu.collapse:not(.show) {
+        display: none;
+      }
+
+      .sub-menu.collapse.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk arrow icon */
+      .m-link[aria-expanded="true"] .arrow {
+        transform: rotate(180deg);
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+    </style>
+
+    <!-- style dashboard -->
+    <style>
+      /* Compact layout with smaller cards */
+      body {
+        font-size: 0.875rem;
+      }
+
+      .card {
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        height: 100%;
+      }
+
+      .card-header {
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .card-header h6 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .card-body {
+        padding: 15px;
+      }
+
+      /* Compact chart containers */
+      #apex-emplyoeeAnalytics,
+      #apex-MainCategories,
+      #hiringsources {
+        min-height: 200px;
+      }
+
+      /* Employee list cards */
+      .employee-list-card .card-body {
+        padding: 0;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      /* Compact stat cards */
+      .stat-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 5px;
+      }
+
+      .stat-card img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+        object-fit: contain;
+      }
+
+      .stat-card h4 {
+        font-weight: 700;
+        margin: 5px 0;
+        font-size: 1.25rem;
+      }
+
+      .stat-card span {
+        font-size: 0.75rem;
+      }
+
+      /* Compact employee list items */
+      .employee-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.2s;
+      }
+
+      .employee-item:last-child {
+        border-bottom: none;
+      }
+
+      .employee-item:hover {
+        background-color: #f8f9fa;
+      }
+
+      .employee-item .avatar {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+      }
+
+      .employee-item .employee-info h6 {
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+      }
+
+      .employee-item .employee-info span {
+        font-size: 0.7rem;
+      }
+
+      .employee-item .employee-time {
+        color: #6c757d;
+        font-size: 0.7rem;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .card {
+          margin-bottom: 10px;
+        }
+
+        .card-header {
+          padding: 8px 12px;
+        }
+
+        .card-body {
+          padding: 12px;
+        }
+      }
+    </style>
   </head>
 
   <body data-mytask="theme-indigo">
@@ -37,68 +193,95 @@
                   d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
                 />
                 <path
-                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"
                 />
               </svg>
             </span>
             <span class="logo-text">Hriss</span>
           </a>
-          <!-- Menu: main ul -->
 
+          <!-- Menu: main ul -->
           <ul class="menu-list flex-grow-1 mt-3">
             <li class="collapsed">
-              <a class="m-link" href="dashboard.html">
-                <i class="icofont-home fs-5"></i> <span>Dashboard</span></a
-              >
+              <a class="m-link" href="HR-dashboard.html">
+                <i class="icofont-home fs-5"></i> <span>Dashboard</span>
+              </a>
             </li>
             <li class="collapsed">
-              <a class="m-link" href="HR-karyawan.html">
-                <i class="icofont-users-alt-5"></i> <span>Karyawan</span></a
-              >
-            </li>
-            <li class="collapsed">
-              <a class="m-link" href="HR-Absensi.html">
-                <i class="icofont-contrast"></i> <span>Absensi</span></a
-              >
-            </li>
-            <li class="collapsed">
-              <a class="m-link" href="HR-Divisi.html">
-                <i class="icofont-contrast"></i> <span>Divisi</span></a
-              >
+              <a class="m-link" href="HR-Penilai.html">
+                <i class="icofont-users-alt-5"></i>
+                <span>Penilaian Karyawan</span>
+              </a>
             </li>
             <li class="collapsed">
               <a
                 class="m-link"
                 data-bs-toggle="collapse"
-                data-bs-target="#tikit-Components"
+                data-bs-target="#history-components"
                 href="#"
-                ><i class="icofont-ui-calculator"></i> <span>Nilai KPI</span>
+              >
+                <i class="icofont-history"></i> <span>History</span>
                 <span
                   class="arrow icofont-dotted-down ms-auto text-end fs-5"
-                ></span
-              ></a>
+                ></span>
+              </a>
               <!-- Menu: Sub menu ul -->
-              <ul class="sub-menu collapse" id="tikit-Components">
+              <ul
+                class="sub-menu collapse"
+                id="history-components"
+                style="transition: all 0.3s ease"
+              >
                 <li>
-                  <a class="ms-link" href="HR-Peringkat-KPI.html">
-                    <span>Peringkat</span></a
+                  <a class="ms-link" href="HR-Absensi.html"
+                    ><span>Laporan Hasil Absensi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Peringkat-KPI.html"
+                    ><span>Laporan Hasil KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#masterdata-components"
+                href="#"
+              >
+                <i class="icofont-ui-calculator"></i> <span>Master Data</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="masterdata-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-karyawan.html"
+                    ><span>Karyawan</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Divisi.html"
+                    ><span>Divisi</span></a
                   >
                 </li>
                 <li>
                   <a class="ms-link" href="HR-edit-kpi.html">
-                    <span>Edit</span></a
-                  >
-                </li>
-                <li>
-                  <a class="ms-link" href="HR-Penilai.html">
-                    <span>Penilai</span></a
+                    <span>Penilaian KPI</span></a
                   >
                 </li>
               </ul>
             </li>
           </ul>
 
-          <!-- Menu: menu collepce btn -->
+          <!-- Menu: menu collapse btn -->
           <button
             type="button"
             class="btn btn-link sidebar-mini-btn text-light"
@@ -159,22 +342,23 @@
                             <small class="">Dylan.hunter@gmail.com</small>
                           </div>
                         </div>
-
                         <div><hr class="dropdown-divider border-dark" /></div>
                       </div>
                       <div class="list-group m-2">
                         <a
                           href="ui-elements/auth-signup.html"
                           class="list-group-item list-group-item-action border-0"
-                          ><i class="icofont-contact-add fs-5 me-3"></i>Edit
-                          profil diri</a
                         >
+                          <i class="icofont-contact-add fs-5 me-3"></i>Edit
+                          profil diri
+                        </a>
                         <div><hr class="dropdown-divider border-dark" /></div>
                         <a
                           href="ui-elements/auth-signin.html"
                           class="list-group-item list-group-item-action border-0"
-                          ><i class="icofont-logout fs-6 me-3"></i>Signout</a
                         >
+                          <i class="icofont-logout fs-6 me-3"></i>Signout
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -226,17 +410,16 @@
         </div>
 
         <!-- Main content-->
-        <div class="container-fluid px-4">
-          <div class="row">
-            <!-- statistik-->
+
+        <div class="container-fluid px-2">
+          <div class="row g-2">
+            <!-- KPI Divisi Chart -->
             <div class="col-md-8">
-              <div class="card">
-                <div
-                  class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0"
-                >
+              <div class="card h-100">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold">KPI Divisi</h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-2">
                   <div
                     class="ac-line-transparent"
                     id="apex-emplyoeeAnalytics"
@@ -245,91 +428,79 @@
               </div>
             </div>
 
-            <!-- karyawan top -->
+            <!-- Karyawan Terbaik -->
             <div class="col-md-4">
-              <div class="card">
-                <div
-                  class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0"
-                >
+              <div class="card h-100 employee-list-card">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold">Karyawan Terbaik</h6>
                 </div>
-                <!-- Tambahkan style scroll di card-body -->
-                <div
-                  class="card-body"
-                  style="max-height: 250px; overflow-y: auto"
-                >
+                <div class="card-body p-0">
                   <div class="flex-grow-1">
-                    <!-- List karyawan -->
-                    <div
-                      class="py-2 d-flex align-items-center border-bottom flex-wrap"
-                    >
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar2.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Natalie Gibson</h6>
                           <span class="text-muted">Ui/UX Designer</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 1.30 - 1:30
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 1.30
                       </div>
                     </div>
 
-                    <div
-                      class="py-2 d-flex align-items-center border-bottom flex-wrap"
-                    >
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar3.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Youn Bel</h6>
                           <span class="text-muted">Unity 3d</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 7.00 - 8.00
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 7.00
                       </div>
                     </div>
-                    <div class="py-2 d-flex align-items-center flex-wrap">
+
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar2.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Gibson Butler</h6>
                           <span class="text-muted">Networking</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 8.00 - 9.00
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 8.00
                       </div>
                     </div>
 
-                    <div
-                      class="py-2 d-flex align-items-center border-bottom flex-wrap"
-                    >
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar9.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Peter Piperg</h6>
                           <span class="text-muted">Web Design</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 9.00 - 1:30
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 9.00
                       </div>
                     </div>
                   </div>
@@ -337,140 +508,101 @@
               </div>
             </div>
 
-            <!-- Jumlah Karyawan -->
+            <!-- Stat Cards -->
             <div class="col-md-2">
-              <div class="card text-center">
-                <div class="card-header py-3 bg-transparent border-bottom-0">
-                  <h6 class="mb-0 fw-bold">Karyawan</h6>
+              <div class="card h-100">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
+                  <h6 class="mb-0 fw-bold text-center">Karyawan</h6>
                 </div>
-                <div class="card-body">
-                  <img
-                    src="user.png"
-                    alt="User Icon"
-                    class="mb-3"
-                    style="width: 60px"
-                  />
+                <div class="card-body stat-card">
+                  <img src="user.png" alt="User Icon" />
                   <h4 class="fw-bold">120</h4>
-                  <span class="text-muted">Total Karyawan</span>
+                  <span class="text-muted">Total</span>
                 </div>
               </div>
             </div>
 
-            <!-- Jumlah Divisi -->
             <div class="col-md-2">
-              <div class="card text-center">
-                <div class="card-header py-3 bg-transparent border-bottom-0">
-                  <h6 class="mb-0 fw-bold">Divisi</h6>
+              <div class="card h-100">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
+                  <h6 class="mb-0 fw-bold text-center">Divisi</h6>
                 </div>
-                <div class="card-body">
-                  <img
-                    src="employment.png"
-                    alt="User Icon"
-                    class="mb-3"
-                    style="width: 60px"
-                  />
-                  <h4 class="fw-bold">120</h4>
-                  <span class="text-muted">Total Divisi</span>
+                <div class="card-body stat-card">
+                  <img src="employment.png" alt="Divisi Icon" />
+                  <h4 class="fw-bold">8</h4>
+                  <span class="text-muted">Total</span>
                 </div>
               </div>
             </div>
 
-            <!-- Gender Karyawan -->
+            <!-- Gender Chart -->
             <div class="col-md-4">
-              <div class="card text-center">
-                <div class="card-header py-3 bg-transparent border-bottom-0">
-                  <h6 class="mb-0 fw-bold">Total Karyawan</h6>
+              <div class="card h-10">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
+                  <h6 class="mb-0 fw-bold text-center">Gender Karyawan</h6>
                 </div>
-                <div class="card-body">
-                  <div class="mt-3" id="apex-MainCategories"></div>
+                <div class="card-body p-2">
+                  <div id="apex-MainCategories"></div>
                 </div>
               </div>
             </div>
 
-            <!--Karyawan Bottom-->
+            <!-- Karyawan Bottom -->
             <div class="col-md-4">
-              <div class="card">
-                <div
-                  class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0"
-                >
-                  <h6 class="mb-0 fw-bold">Karyawan Bottom</h6>
+              <div class="card h-100 employee-list-card">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
+                  <h6 class="mb-0 fw-bold">Perlu Perhatian</h6>
                 </div>
-                <!-- Tambahkan style scroll di card-body -->
-                <div
-                  class="card-body"
-                  style="max-height: 250px; overflow-y: auto"
-                >
+                <div class="card-body p-0">
                   <div class="flex-grow-1">
-                    <!-- List karyawan -->
-                    <div
-                      class="py-2 d-flex align-items-center border-bottom flex-wrap"
-                    >
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar2.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Natalie Gibson</h6>
                           <span class="text-muted">Ui/UX Designer</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 1.30 - 1:30
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 1.30
                       </div>
                     </div>
 
-                    <div
-                      class="py-2 d-flex align-items-center border-bottom flex-wrap"
-                    >
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar3.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Youn Bel</h6>
                           <span class="text-muted">Unity 3d</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 7.00 - 8.00
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 7.00
                       </div>
                     </div>
-                    <div class="py-2 d-flex align-items-center flex-wrap">
+
+                    <div class="employee-item">
                       <div class="d-flex align-items-center flex-fill">
                         <img
-                          class="avatar lg rounded-circle img-thumbnail"
+                          class="avatar rounded-circle img-thumbnail"
                           src="assets/images/lg/avatar2.jpg"
                           alt="profile"
                         />
-                        <div class="d-flex flex-column ps-3">
+                        <div class="employee-info">
                           <h6 class="fw-bold mb-0 small-14">Gibson Butler</h6>
                           <span class="text-muted">Networking</span>
                         </div>
                       </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 8.00 - 9.00
-                      </div>
-                    </div>
-                    <div
-                      class="py-2 d-flex align-items-center border-bottom flex-wrap"
-                    >
-                      <div class="d-flex align-items-center flex-fill">
-                        <img
-                          class="avatar lg rounded-circle img-thumbnail"
-                          src="assets/images/lg/avatar12.jpg"
-                          alt="profile"
-                        />
-                        <div class="d-flex flex-column ps-3">
-                          <h6 class="fw-bold mb-0 small-14">Robert Young</h6>
-                          <span class="text-muted">PHP Developer</span>
-                        </div>
-                      </div>
-                      <div class="time-block text-truncate">
-                        <i class="icofont-clock-time"></i> 1.30 - 2:30
+                      <div class="employee-time">
+                        <i class="icofont-clock-time"></i> 8.00
                       </div>
                     </div>
                   </div>
@@ -478,48 +610,29 @@
               </div>
             </div>
 
-            <!-- statistik total karyawan divisi -->
-            <div class="row">
-              <!-- Statistik Total Karyawan Divisi -->
-              <div class="card-body col-md-5">
-                <div class="mt-3" id="apex-MainCategories"></div>
-              </div>
-            </div>
-
-            <div class="row">
-              <!-- Top Hiring Sources -->
-              <div class="col-md-">
-                <div class="card">
-                  <div
-                    class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0"
-                  >
-                    <h6 class="mb-0 fw-bold">Jumlah Karyawan Tiap Divisi</h6>
-                  </div>
-                  <div class="card-body">
-                    <div id="hiringsources"></div>
-                  </div>
+            <!-- Jumlah Karyawan Divisi -->
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header py-2 bg-transparent border-bottom-0">
+                  <h6 class="mb-0 fw-bold">Distribusi Karyawan per Divisi</h6>
+                </div>
+                <div class="card-body p-2">
+                  <div id="hiringsources"></div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- end row -->
         </div>
-        <!-- end container-fluid -->
       </div>
-      <!-- end main -->
     </div>
-    <!-- end mytask-layout -->
 
     <!-- Jquery Core Js -->
     <script src="assets/bundles/libscripts.bundle.js"></script>
-
     <!-- Plugin Js-->
     <script src="assets/bundles/apexcharts.bundle.js"></script>
-
-    <!-- Jquery Page Js -->
+    <!-- Plugin Js tabel-->
+    <script src="assets/bundles/dataTables.bundle.js"></script>
     <script src="../js/template.js"></script>
     <script src="../js/page/hr.js"></script>
   </body>
-
-  <!-- Mirrored from pixelwibes.com/template/my-task/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Aug 2025 05:29:03 GMT -->
 </html>

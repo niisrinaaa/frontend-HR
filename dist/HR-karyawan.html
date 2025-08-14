@@ -7,16 +7,76 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Karyawan</title>
+    <title>index</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <!-- Favicon-->
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
-    <!-- Jquery Core Js -->
-    <script src="assets/bundles/libscripts.bundle.js"></script>
-    <!-- Plugin Js-->
-    <script src="assets/bundles/apexcharts.bundle.js"></script>
-    <script src="assets/bundles/dataTables.bundle.js"></script>
+    <style>
+      /* Animasi untuk dropdown */
+      .sub-menu.collapsing {
+        transition: height 0.3s ease, opacity 0.3s ease;
+      }
+
+      .sub-menu.collapse:not(.show) {
+        display: none;
+      }
+
+      .sub-menu.collapse.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk arrow icon */
+      .m-link[aria-expanded="true"] .arrow {
+        transform: rotate(180deg);
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+    </style>
+    <!-- style karyawan -->
+    <style>
+      /* Improved spacing and alignment */
+      body {
+        line-height: 1.6;
+      }
+      .sidebar {
+        padding: 1rem;
+      }
+      .main {
+        padding: 0 1rem;
+      }
+      .card-header {
+        padding: 1rem 0;
+      }
+      .table th,
+      .table td {
+        padding: 0.75rem;
+        vertical-align: middle;
+      }
+      .modal-body .mb-3 {
+        margin-bottom: 1rem;
+      }
+      .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+      }
+      .badge {
+        padding: 0.35em 0.65em;
+      }
+    </style>
   </head>
 
   <body data-mytask="theme-indigo">
@@ -47,63 +107,89 @@
             </span>
             <span class="logo-text">Hriss</span>
           </a>
-          <!-- Menu: main ul -->
 
+          <!-- Menu: main ul -->
           <ul class="menu-list flex-grow-1 mt-3">
             <li class="collapsed">
               <a class="m-link" href="HR-dashboard.html">
-                <i class="icofont-home fs-5"></i> <span>Dashboard</span></a
-              >
+                <i class="icofont-home fs-5"></i> <span>Dashboard</span>
+              </a>
             </li>
             <li class="collapsed">
-              <a class="m-link" href="HR-karyawan.html">
-                <i class="icofont-users-alt-5"></i> <span>Karyawan</span></a
-              >
-            </li>
-            <li class="collapsed">
-              <a class="m-link" href="HR-Absensi.html">
-                <i class="icofont-contrast"></i> <span>Absensi</span></a
-              >
-            </li>
-            <li class="collapsed">
-              <a class="m-link" href="HR-Divisi.html">
-                <i class="icofont-contrast"></i> <span>Divisi</span></a
-              >
+              <a class="m-link" href="HR-Penilai.html">
+                <i class="icofont-users-alt-5"></i>
+                <span>Penilaian Karyawan</span>
+              </a>
             </li>
             <li class="collapsed">
               <a
                 class="m-link"
                 data-bs-toggle="collapse"
-                data-bs-target="#tikit-Components"
+                data-bs-target="#history-components"
                 href="#"
               >
-                <i class="icofont-ui-calculator"></i> <span>Nilai KPI</span>
+                <i class="icofont-history"></i> <span>History</span>
                 <span
                   class="arrow icofont-dotted-down ms-auto text-end fs-5"
-                ></span
-              ></a>
+                ></span>
+              </a>
               <!-- Menu: Sub menu ul -->
-              <ul class="sub-menu collapse" id="tikit-Components">
+              <ul
+                class="sub-menu collapse"
+                id="history-components"
+                style="transition: all 0.3s ease"
+              >
                 <li>
-                  <a class="ms-link" href="HR-Peringkat-KPI.html">
-                    <span>Peringkat</span></a
+                  <a class="ms-link" href="HR-Absensi.html"
+                    ><span>Laporan Hasil Absensi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Peringkat-KPI.html"
+                    ><span>Laporan Hasil KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#masterdata-components"
+                href="#"
+              >
+                <i class="icofont-ui-calculator"></i> <span>Master Data</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="masterdata-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-karyawan.html"
+                    ><span>Karyawan</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Divisi.html"
+                    ><span>Divisi</span></a
                   >
                 </li>
                 <li>
                   <a class="ms-link" href="HR-edit-kpi.html">
-                    <span>Edit</span></a
-                  >
-                </li>
-                <li>
-                  <a class="ms-link" href="HR-Penilai.html">
-                    <span>Penilai</span></a
+                    <span>Penilaian KPI</span></a
                   >
                 </li>
               </ul>
             </li>
           </ul>
 
-          <!-- Menu: menu collepce btn -->
+          <!-- Menu: menu collapse btn -->
           <button
             type="button"
             class="btn btn-link sidebar-mini-btn text-light"
@@ -170,15 +256,17 @@
                         <a
                           href="ui-elements/auth-signup.html"
                           class="list-group-item list-group-item-action border-0"
-                          ><i class="icofont-contact-add fs-5 me-3"></i>Edit
-                          profil diri</a
                         >
+                          <i class="icofont-contact-add fs-5 me-3"></i>Edit
+                          profil diri
+                        </a>
                         <div><hr class="dropdown-divider border-dark" /></div>
                         <a
                           href="ui-elements/auth-signin.html"
                           class="list-group-item list-group-item-action border-0"
-                          ><i class="icofont-logout fs-6 me-3"></i>Signout</a
                         >
+                          <i class="icofont-logout fs-6 me-3"></i>Signout
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -219,7 +307,7 @@
                     class="input-group-text add-member-top"
                     id="addon-wrappingone"
                     data-bs-toggle="modal"
-                    data-bs-target="#addholiday"
+                    data-bs-target="#addUser"
                   >
                     <i class="fa fa-plus"></i>
                   </button>
@@ -230,32 +318,25 @@
         </div>
 
         <!-- Main content-->
-
-        <!-- tabel -->
-        <div class="body d-flex py-lg-3 py-md-2">
+        <div class="body py-3">
           <div class="container-xxl">
-            <!-- Header Section -->
+            <!-- Page Header -->
             <div class="row mb-4">
               <div class="col-12">
-                <div class="card-header bg-transparent border-bottom px-0 py-3">
-                  <div
-                    class="d-flex justify-content-between align-items-center flex-wrap"
+                <div class="d-flex justify-content-between align-items-center">
+                  <h3 class="fw-bold mb-0">Data Karyawan</h3>
+                  <button
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addkaryawan"
                   >
-                    <h3 class="fw-bold mb-0">Data Karyawan</h3>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#addholiday"
-                    >
-                      <i class="icofont-plus-circle me-2"></i>Tambah Karyawan
-                    </button>
-                  </div>
+                    <i class="icofont-plus-circle me-2"></i>Tambah Karyawan
+                  </button>
                 </div>
               </div>
             </div>
 
-            <!-- Table Section -->
+            <!-- Data Table -->
             <div class="row">
               <div class="col-12">
                 <div class="card">
@@ -264,7 +345,6 @@
                       <table
                         id="myProjectTable"
                         class="table table-hover align-middle mb-0"
-                        style="width: 100%"
                       >
                         <thead class="table-light">
                           <tr>
@@ -294,7 +374,6 @@
                             <td>
                               <div class="d-flex gap-2">
                                 <button
-                                  type="button"
                                   class="btn btn-sm btn-outline-primary edit-btn"
                                   data-bs-toggle="modal"
                                   data-bs-target="#editholiday"
@@ -302,7 +381,6 @@
                                   <i class="icofont-edit"></i> Edit
                                 </button>
                                 <button
-                                  type="button"
                                   class="btn btn-sm btn-outline-danger deleterow"
                                 >
                                   <i class="icofont-ui-delete"></i> Hapus
@@ -310,7 +388,6 @@
                               </div>
                             </td>
                           </tr>
-                          <!-- Tambahan baris data lainnya bisa ditambahkan di sini -->
                         </tbody>
                       </table>
                     </div>
@@ -320,209 +397,17 @@
             </div>
           </div>
         </div>
-
-        <!-- tambah karyawan -->
-        <div
-          class="modal fade"
-          id="addholiday"
-          tabindex="-1"
-          aria-hidden="true"
-        >
-          <div
-            class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable"
-          >
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="addholidayLabel">
-                  Tambah Karyawan
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="namaKaryawan" class="form-label"
-                    >Nama Karyawan</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="namaKaryawan"
-                    placeholder="Nama Karyawan"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="divisiKaryawan" class="form-label"
-                    >Divisi Karyawan</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="divisiKaryawan"
-                    placeholder="Divisi"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="jabatanKaryawan" class="form-label"
-                    >Jabatan Karyawan</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="jabatanKaryawan"
-                    placeholder="Jabatan"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="genderKaryawan" class="form-label">Gender</label>
-                  <select class="form-control" id="genderKaryawan">
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="telpKaryawan" class="form-label">No.Telp</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="telpKaryawan"
-                    placeholder="No.Telp"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="emailKaryawan" class="form-label">Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="emailKaryawan"
-                    placeholder="Email"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="passwordKaryawan" class="form-label"
-                    >Password default</label
-                  >
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="passwordKaryawan"
-                    placeholder="Password default"
-                    value="password123"
-                  />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Batal
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  id="tambahKaryawanBtn"
-                >
-                  Tambah
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- edit -->
-        <div
-          class="modal fade"
-          id="editholiday"
-          tabindex="-1"
-          aria-hidden="true"
-        >
-          <div
-            class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable"
-          >
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="editholidayLabel">
-                  Edit Karyawan
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <input type="hidden" id="editId" />
-                <div class="mb-3">
-                  <label for="editNama" class="form-label">Nama Karyawan</label>
-                  <input type="text" class="form-control" id="editNama" />
-                </div>
-                <div class="mb-3">
-                  <label for="editDivisi" class="form-label"
-                    >Divisi Karyawan</label
-                  >
-                  <input type="text" class="form-control" id="editDivisi" />
-                </div>
-                <div class="mb-3">
-                  <label for="editJabatan" class="form-label"
-                    >Jabatan Karyawan</label
-                  >
-                  <input type="text" class="form-control" id="editJabatan" />
-                </div>
-                <div class="mb-3">
-                  <label for="editGender" class="form-label">Gender</label>
-                  <select class="form-control" id="editGender">
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="editTelp" class="form-label">No.Telp</label>
-                  <input type="text" class="form-control" id="editTelp" />
-                </div>
-                <div class="mb-3">
-                  <label for="editEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="editEmail" />
-                </div>
-                <div class="mb-3">
-                  <label for="editStatus" class="form-label">Status</label>
-                  <select class="form-control" id="editStatus">
-                    <option value="Aktif">Aktif</option>
-                    <option value="Tidak Aktif">Tidak Aktif</option>
-                  </select>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Batal
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  id="simpanEditBtn"
-                >
-                  Simpan
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
+    <!-- Jquery Core Js -->
+    <script src="assets/bundles/libscripts.bundle.js"></script>
+    <!-- Plugin Js-->
+    <script src="assets/bundles/apexcharts.bundle.js"></script>
+    <!-- Plugin Js tabel-->
+    <script src="assets/bundles/dataTables.bundle.js"></script>
+
     <script src="../js/template.js"></script>
-    
-    <!-- Jquery Page Js -->
     <script>
       $(document).ready(function () {
         // Inisialisasi DataTable
@@ -565,14 +450,14 @@
               "Aktif",
               notelp,
               email,
-              `<div class="btn-group" role="group">
-              <button type="button" class="btn btn-outline-secondary edit-btn" data-bs-toggle="modal" data-bs-target="#editholiday">
-                <i class="icofont-edit text-success"></i>
-              </button>
-              <button type="button" class="btn btn-outline-secondary deleterow">
-                <i class="icofont-ui-delete text-danger"></i>
-              </button>
-            </div>`,
+              `<div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editholiday">
+                                <i class="icofont-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger deleterow">
+                                <i class="icofont-ui-delete"></i> Hapus
+                            </button>
+                        </div>`,
             ])
             .draw();
 
