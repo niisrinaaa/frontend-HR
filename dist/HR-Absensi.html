@@ -45,6 +45,20 @@
       .arrow {
         transition: transform 0.3s ease;
       }
+
+      /* Style untuk dropdown filter */
+      .filter-dropdowns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .filter-dropdowns .dropdown {
+        min-width: 120px;
+      }
+      .filter-dropdowns .dropdown-menu {
+        min-width: 100%;
+      }
     </style>
   </head>
 
@@ -150,7 +164,9 @@
                   >
                 </li>
                 <li>
-                  <a class="ms-link" href="HR-edit-kpi.html"> <span>Penilaian KPI</span></a>
+                  <a class="ms-link" href="HR-edit-kpi.html">
+                    <span>Penilaian KPI</span></a
+                  >
                 </li>
               </ul>
             </li>
@@ -285,7 +301,7 @@
         </div>
 
         <!-- Main content-->
-       <div class="body d-flex py-3">
+        <div class="body d-flex py-3">
           <!-- Body: Body -->
           <div class="body d-flex py-lg-3 py-md-2">
             <div class="container-xxl">
@@ -298,7 +314,9 @@
 
                     <div class="d-flex align-items-center flex-wrap mt-3">
                       <!-- Card Informasi -->
-                     <div class="row g-3 mb-3 row-cols-2 row-cols-md-4 justify-content-between">
+                      <div
+                        class="row g-3 mb-3 row-cols-2 row-cols-md-4 justify-content-between"
+                      >
                         <div class="col">
                           <div class="card bg-primary h-100">
                             <div
@@ -354,8 +372,8 @@
                       </div>
 
                       <!-- Dropdowns -->
-                      <div class="d-flex">
-                        <div class="dropdown me-3">
+                      <div class="filter-dropdowns">
+                        <div class="dropdown">
                           <button
                             class="btn btn-primary dropdown-toggle"
                             type="button"
@@ -366,16 +384,39 @@
                             Bulan
                           </button>
                           <ul
-                            class="dropdown-menu dropdown-menu-end"
+                            class="dropdown-menu"
                             aria-labelledby="dropdownMenuButton2"
                           >
                             <li><a class="dropdown-item" href="#">Semua</a></li>
                             <li>
                               <a class="dropdown-item" href="#">Januari</a>
                             </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Februari</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Maret</a></li>
+                            <li><a class="dropdown-item" href="#">April</a></li>
+                            <li><a class="dropdown-item" href="#">Mei</a></li>
+                            <li><a class="dropdown-item" href="#">Juni</a></li>
+                            <li><a class="dropdown-item" href="#">Juli</a></li>
+                            <li>
+                              <a class="dropdown-item" href="#">Agustus</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">September</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Oktober</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">November</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Desember</a>
+                            </li>
                           </ul>
                         </div>
-                        <div class="dropdown me-3">
+                        <div class="dropdown">
                           <button
                             class="btn btn-primary dropdown-toggle"
                             type="button"
@@ -386,11 +427,14 @@
                             Tahun
                           </button>
                           <ul
-                            class="dropdown-menu dropdown-menu-end"
+                            class="dropdown-menu"
                             aria-labelledby="dropdownMenuButton2"
                           >
                             <li><a class="dropdown-item" href="#">Semua</a></li>
+                            <li><a class="dropdown-item" href="#">2023</a></li>
                             <li><a class="dropdown-item" href="#">2022</a></li>
+                            <li><a class="dropdown-item" href="#">2021</a></li>
+                            <li><a class="dropdown-item" href="#">2020</a></li>
                           </ul>
                         </div>
                         <div class="dropdown">
@@ -404,11 +448,45 @@
                             Divisi
                           </button>
                           <ul
-                            class="dropdown-menu dropdown-menu-end"
+                            class="dropdown-menu"
                             aria-labelledby="dropdownMenuButton2"
                           >
                             <li><a class="dropdown-item" href="#">Semua</a></li>
-                            <li><a class="dropdown-item" href="#">marketing</a></li>
+                            <li>
+                              <a class="dropdown-item" href="#">Marketing</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">IT</a></li>
+                            <li><a class="dropdown-item" href="#">HR</a></li>
+                            <li>
+                              <a class="dropdown-item" href="#">Finance</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-primary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            Jabatan
+                          </button>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton2"
+                          >
+                            <li><a class="dropdown-item" href="#">Semua</a></li>
+                            <li>
+                              <a class="dropdown-item" href="#">Manager</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Supervisor</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Staff</a></li>
+                            <li>
+                              <a class="dropdown-item" href="#">Intern</a>
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -457,20 +535,12 @@
                                 <span class="fw-bold ms-1">0</span>
                               </td>
                               <td>
-                                <div
-                                  class="btn-group"
-                                  role="group"
-                                  aria-label="Basic outlined example"
+                                <a
+                                  href="HR-detail-absen.html"
+                                  class="btn btn-outline-secondary"
                                 >
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-secondary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#absenkaryawan"
-                                  >
-                                    <i class="icofont-eye-alt"></i>
-                                  </button>
-                                </div>
+                                  <i class="icofont-eye-alt"></i>
+                                </a>
                               </td>
                             </tr>
                           </tbody>
@@ -480,76 +550,6 @@
                   </div>
                 </div>
                 <!-- Row End -->
-              </div>
-            </div>
-
-            <!-- modal KPI-->
-            <div
-              class="modal fade"
-              id="absenkaryawan"
-              tabindex="-1"
-              aria-hidden="true"
-            >
-              <div
-                class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable"
-              >
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="absenModalLabel">
-                      Data Absensi
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="fw-bold m-2">
-                    <span>ID Karyawan : </span>12345
-                  </div>
-                  <div class="fw-bold mb-2 ms-2">
-                    <span>Nama Karyawan : </span>John Doe
-                  </div>
-                  <div class="modal-body p-0">
-                    <table
-                      class="table table-bordered table-striped mb-0 align-middle"
-                    >
-                      <thead class="table-primary text-center fw-bold">
-                        <tr>
-                          <th>Tanggal</th>
-                          <th>Status</th>
-                          <th>Jam Masuk</th>
-                          <th>Jam Keluar</th>
-                          <th>Lama Kerja</th>
-                        </tr>
-                      </thead>
-                      <tbody class="text-center">
-                        <tr class="table-hover">
-                          <td>1</td>
-                          <td>
-                            <span class="badge bg-success rounded-pill px-3"
-                              >Hadir</span
-                            >
-                          </td>
-                          <td>08:00</td>
-                          <td>17:00</td>
-                          <td>9 jam</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary rounded-pill px-4"
-                      data-bs-dismiss="modal"
-                    >
-                      Tutup
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
 
