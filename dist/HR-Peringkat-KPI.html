@@ -7,53 +7,78 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>index</title>
+    <title>Peringkat KPI Karyawan</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <!-- project css file  -->
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- project css file -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
+    <!-- DataTables CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"
+    />
     <style>
-      /* Animasi untuk dropdown */
-      .sub-menu.collapsing {
-        transition: height 0.3s ease, opacity 0.3s ease;
+      .sidebar {
+        width: 280px;
+        position: fixed;
+        height: 100vh;
+        z-index: 1000;
       }
-
-      .sub-menu.collapse:not(.show) {
-        display: none;
+      .main {
+        margin-left: 280px;
+        width: calc(100% - 280px);
       }
-
-      .sub-menu.collapse.show {
-        display: block;
-        animation: fadeIn 0.3s ease;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
+      @media (max-width: 992px) {
+        .sidebar {
+          transform: translateX(-280px);
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        .sidebar.show {
+          transform: translateX(0);
+        }
+        .main {
+          margin-left: 0;
+          width: 100%;
         }
       }
-
-      /* Animasi untuk arrow icon */
-      .m-link[aria-expanded="true"] .arrow {
-        transform: rotate(180deg);
+      .badge-score {
+        font-size: 0.9em;
+        padding: 5px 10px;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        color: #212529;
+        border: 1px solid #dee2e6;
       }
-
-      .arrow {
-        transition: transform 0.3s ease;
-      }
-    </style>
-
-    <!-- style peringkat kpi -->
-    <style>
-      .dropdown-toggle::after {
-        display: none;
-      }
-      .filter-active {
+      .filter-option.active {
         background-color: #e9ecef;
+      }
+      .filter-dropdowns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .filter-dropdowns .dropdown {
+        min-width: 120px;
+      }
+      .filter-dropdowns .dropdown-menu {
+        min-width: 100%;
+      }
+      .card-info {
+        margin-bottom: 20px;
+      }
+      .card-info .card {
+        height: 100%;
+      }
+      .card-info .card-body {
+        padding: 15px;
+      }
+      .card-info i {
+        font-size: 1.5rem;
       }
     </style>
   </head>
@@ -113,11 +138,7 @@
                 ></span>
               </a>
               <!-- Menu: Sub menu ul -->
-              <ul
-                class="sub-menu collapse"
-                id="history-components"
-                style="transition: all 0.3s ease"
-              >
+              <ul class="sub-menu collapse" id="history-components">
                 <li>
                   <a class="ms-link" href="HR-Absensi.html"
                     ><span>Laporan Hasil Absensi</span></a
@@ -144,11 +165,7 @@
                 ></span>
               </a>
               <!-- Menu: Sub menu ul -->
-              <ul
-                class="sub-menu collapse"
-                id="masterdata-components"
-                style="transition: all 0.3s ease"
-              >
+              <ul class="sub-menu collapse" id="masterdata-components">
                 <li>
                   <a class="ms-link" href="HR-karyawan.html"
                     ><span>Karyawan</span></a
@@ -160,8 +177,8 @@
                   >
                 </li>
                 <li>
-                  <a class="ms-link" href="HR-edit-kpi.html">
-                    <span>Penilaian KPI</span></a
+                  <a class="ms-link" href="HR-edit-kpi.html"
+                    ><span>Penilaian KPI</span></a
                   >
                 </li>
               </ul>
@@ -188,7 +205,6 @@
               <div
                 class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1"
               >
-                <div class="d-flex"></div>
                 <div
                   class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center"
                 >
@@ -256,8 +272,7 @@
               <button
                 class="navbar-toggler p-0 border-0 menu-toggle order-3"
                 type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mainHeader"
+                id="sidebarToggle"
               >
                 <span class="fa fa-bars"></span>
               </button>
@@ -281,15 +296,6 @@
                     aria-label="search"
                     aria-describedby="addon-wrapping"
                   />
-                  <button
-                    type="button"
-                    class="input-group-text add-member-top"
-                    id="addon-wrappingone"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addUser"
-                  >
-                    <i class="fa fa-plus"></i>
-                  </button>
                 </div>
               </div>
             </div>
@@ -302,36 +308,95 @@
             <div class="row align-items-center">
               <div class="border-0 mb-4">
                 <div
-                  class="card-header py-3 no-bg bg-transparent d-flex flex-column px-0 border-bottom"
+                  class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap"
                 >
-                  <h3 class="fw-bold mb-3">Peringkat Karyawan</h3>
-                  <div class="row w-100 g-2">
-                    <!-- Kiri -->
-                    <div class="col-md-6 d-flex gap-2">
-                      <!-- Dropdown divisi -->
+                  <h3 class="fw-bold mb-0">Peringkat KPI Karyawan</h3>
+
+                  <div class="d-flex align-items-center flex-wrap mt-3">
+                    <!-- Card Informasi -->
+                    <div
+                      class="row g-3 mb-3 row-cols-2 row-cols-md-4 justify-content-between card-info"
+                    >
+                      <div class="col">
+                        <div class="card bg-primary h-100">
+                          <div
+                            class="card-body text-white d-flex align-items-center"
+                          >
+                            <i class="icofont-star fs-3"></i>
+                            <div class="d-flex flex-column ms-3">
+                              <h6 class="mb-0">Skor Tertinggi</h6>
+                              <span class="text-white">95</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="card bg-primary h-100">
+                          <div
+                            class="card-body text-white d-flex align-items-center"
+                          >
+                            <i class="icofont-ui-rating fs-3"></i>
+                            <div class="d-flex flex-column ms-3">
+                              <h6 class="mb-0">Skor Rata-rata</h6>
+                              <span class="text-white">84.25</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="card bg-primary h-100">
+                          <div
+                            class="card-body text-white d-flex align-items-center"
+                          >
+                            <i class="icofont-warning fs-3"></i>
+                            <div class="d-flex flex-column ms-3">
+                              <h6 class="mb-0">Skor Terendah</h6>
+                              <span class="text-white">65</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="card bg-primary h-100">
+                          <div
+                            class="card-body text-white d-flex align-items-center"
+                          >
+                            <i class="icofont-users fs-3"></i>
+                            <div class="d-flex flex-column ms-3">
+                              <h6 class="mb-0">Total Karyawan</h6>
+                              <span class="text-white">4</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Dropdowns -->
+                    <div class="filter-dropdowns">
                       <div class="dropdown flex-fill">
                         <button
                           class="btn btn-primary dropdown-toggle w-100"
                           type="button"
-                          data-filter="divisi"
                           id="filterDivisi"
                           data-bs-toggle="dropdown"
                         >
-                          Divisi
+                          Semua Divisi
                         </button>
                         <ul class="dropdown-menu">
                           <li>
                             <a
                               class="dropdown-item filter-option active"
                               href="#"
+                              data-filter="divisi"
                               data-value="all"
-                              >All</a
+                              >Semua Divisi</a
                             >
                           </li>
                           <li>
                             <a
                               class="dropdown-item filter-option"
                               href="#"
+                              data-filter="divisi"
                               data-value="Pemasaran"
                               >Pemasaran</a
                             >
@@ -340,6 +405,7 @@
                             <a
                               class="dropdown-item filter-option"
                               href="#"
+                              data-filter="divisi"
                               data-value="Keuangan"
                               >Keuangan</a
                             >
@@ -347,72 +413,30 @@
                         </ul>
                       </div>
 
-                      <!-- Dropdown Peringkat -->
                       <div class="dropdown flex-fill">
                         <button
                           class="btn btn-primary dropdown-toggle w-100"
                           type="button"
-                          data-filter="peringkat"
-                          id="filterPeringkat"
-                          data-bs-toggle="dropdown"
-                        >
-                          Peringkat
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a
-                              class="dropdown-item filter-option active"
-                              href="#"
-                              data-value="all"
-                              >All</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-value="Terbaik"
-                              >Terbaik</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-value="Terburuk"
-                              >Terburuk</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <!-- Kanan -->
-                    <div class="col-md-6 d-flex gap-2">
-                      <!-- Dropdown Jabatan -->
-                      <div class="dropdown flex-fill">
-                        <button
-                          class="btn btn-primary dropdown-toggle w-100"
-                          type="button"
-                          data-filter="jabatan"
                           id="filterJabatan"
                           data-bs-toggle="dropdown"
                         >
-                          Jabatan
+                          Semua Jabatan
                         </button>
                         <ul class="dropdown-menu">
                           <li>
                             <a
                               class="dropdown-item filter-option active"
                               href="#"
+                              data-filter="jabatan"
                               data-value="all"
-                              >All</a
+                              >Semua Jabatan</a
                             >
                           </li>
                           <li>
                             <a
                               class="dropdown-item filter-option"
                               href="#"
+                              data-filter="jabatan"
                               data-value="Kepala Divisi"
                               >Kepala Divisi</a
                             >
@@ -421,6 +445,7 @@
                             <a
                               class="dropdown-item filter-option"
                               href="#"
+                              data-filter="jabatan"
                               data-value="Karyawan"
                               >Karyawan</a
                             >
@@ -428,30 +453,30 @@
                         </ul>
                       </div>
 
-                      <!-- Dropdown Tahun -->
                       <div class="dropdown flex-fill">
                         <button
                           class="btn btn-primary dropdown-toggle w-100"
                           type="button"
-                          data-filter="tahun"
                           id="filterTahun"
                           data-bs-toggle="dropdown"
                         >
-                          Tahun
+                          Semua Tahun
                         </button>
                         <ul class="dropdown-menu">
                           <li>
                             <a
                               class="dropdown-item filter-option active"
                               href="#"
+                              data-filter="tahun"
                               data-value="all"
-                              >All</a
+                              >Semua Tahun</a
                             >
                           </li>
                           <li>
                             <a
                               class="dropdown-item filter-option"
                               href="#"
+                              data-filter="tahun"
                               data-value="2024"
                               >2024</a
                             >
@@ -460,8 +485,40 @@
                             <a
                               class="dropdown-item filter-option"
                               href="#"
+                              data-filter="tahun"
                               data-value="2025"
                               >2025</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="dropdown flex-fill">
+                        <button
+                          class="btn btn-primary dropdown-toggle w-100"
+                          type="button"
+                          id="filterUrutan"
+                          data-bs-toggle="dropdown"
+                        >
+                          Urutkan Terbaik
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a
+                              class="dropdown-item filter-option active"
+                              href="#"
+                              data-filter="urutan"
+                              data-value="desc"
+                              >Terbaik</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item filter-option"
+                              href="#"
+                              data-filter="urutan"
+                              data-value="asc"
+                              >Terburuk</a
                             >
                           </li>
                         </ul>
@@ -477,17 +534,16 @@
                 <div class="card mb-3">
                   <div class="card-body">
                     <table
-                      id="myProjectTable"
+                      id="kpiTable"
                       class="table table-hover align-middle mb-0"
                       style="width: 100%"
                     >
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Id</th>
+                          <th>ID</th>
                           <th>Nama</th>
                           <th>Divisi</th>
-                          <th>Penilai</th>
                           <th>Jabatan</th>
                           <th>Status</th>
                           <th>Skor KPI</th>
@@ -501,30 +557,18 @@
                           <td>001</td>
                           <td>Bambang</td>
                           <td>Pemasaran</td>
-                          <td>Herlambang</td>
                           <td>Karyawan</td>
-                          <td>Aktif</td>
-                          <td>78</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td><span class="badge-score">92</span></td>
                           <td>Agustus 2025</td>
                           <td>
-                            <div
-                              class="btn-group"
-                              role="group"
-                              aria-label="Basic outlined example"
+                            <a
+                              href="HR-detail-kpi.html?id=001"
+                              class="btn btn-outline-secondary"
+                              title="Detail"
                             >
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary"
-                              >
-                                <i class="icofont-edit text-success"></i>
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary deleterow"
-                              >
-                                <i class="icofont-ui-delete text-danger"></i>
-                              </button>
-                            </div>
+                              <i class="icofont-eye-alt"></i>
+                            </a>
                           </td>
                         </tr>
                         <tr>
@@ -532,30 +576,18 @@
                           <td>002</td>
                           <td>Siti</td>
                           <td>Keuangan</td>
-                          <td>Herlambang</td>
                           <td>Kepala Divisi</td>
-                          <td>Aktif</td>
-                          <td>85</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td><span class="badge-score">85</span></td>
                           <td>Agustus 2025</td>
                           <td>
-                            <div
-                              class="btn-group"
-                              role="group"
-                              aria-label="Basic outlined example"
+                            <a
+                              href="HR-detail-kpi.html?id=002"
+                              class="btn btn-outline-secondary"
+                              title="Detail"
                             >
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary"
-                              >
-                                <i class="icofont-edit text-success"></i>
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary deleterow"
-                              >
-                                <i class="icofont-ui-delete text-danger"></i>
-                              </button>
-                            </div>
+                              <i class="icofont-eye-alt"></i>
+                            </a>
                           </td>
                         </tr>
                         <tr>
@@ -563,30 +595,18 @@
                           <td>003</td>
                           <td>Andi</td>
                           <td>Pemasaran</td>
-                          <td>Herlambang</td>
                           <td>Karyawan</td>
-                          <td>Aktif</td>
-                          <td>65</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td><span class="badge-score">65</span></td>
                           <td>Agustus 2025</td>
                           <td>
-                            <div
-                              class="btn-group"
-                              role="group"
-                              aria-label="Basic outlined example"
+                            <a
+                              href="HR-detail-kpi.html?id=003"
+                              class="btn btn-outline-secondary"
+                              title="Detail"
                             >
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary"
-                              >
-                                <i class="icofont-edit text-success"></i>
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary deleterow"
-                              >
-                                <i class="icofont-ui-delete text-danger"></i>
-                              </button>
-                            </div>
+                              <i class="icofont-eye-alt"></i>
+                            </a>
                           </td>
                         </tr>
                         <tr>
@@ -594,30 +614,18 @@
                           <td>004</td>
                           <td>Dewi</td>
                           <td>Keuangan</td>
-                          <td>Herlambang</td>
                           <td>Karyawan</td>
-                          <td>Aktif</td>
-                          <td>92</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td><span class="badge-score">95</span></td>
                           <td>Agustus 2024</td>
                           <td>
-                            <div
-                              class="btn-group"
-                              role="group"
-                              aria-label="Basic outlined example"
+                            <a
+                              href="HR-detail-kpi.html?id=004"
+                              class="btn btn-outline-secondary"
+                              title="Detail"
                             >
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary"
-                              >
-                                <i class="icofont-edit text-success"></i>
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-outline-secondary deleterow"
-                              >
-                                <i class="icofont-ui-delete text-danger"></i>
-                              </button>
-                            </div>
+                              <i class="icofont-eye-alt"></i>
+                            </a>
                           </td>
                         </tr>
                       </tbody>
@@ -633,28 +641,32 @@
     </div>
 
     <!-- Jquery Core Js -->
-    <!-- Jquery Core Js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/bundles/libscripts.bundle.js"></script>
-
-    <!-- Plugin Js-->
-    <script src="assets/bundles/apexcharts.bundle.js"></script>
     <!-- DataTables JS -->
     <script
       type="text/javascript"
       charset="utf8"
       src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
     ></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
       $(document).ready(function () {
+        // Toggle sidebar di mobile
+        $("#sidebarToggle").click(function () {
+          $(".sidebar").toggleClass("show");
+        });
+
         // Inisialisasi DataTable
-        var table = $("#myProjectTable").DataTable({
+        var table = $("#kpiTable").DataTable({
           responsive: true,
           columnDefs: [
-            { targets: [0, 1, 6, 7, 8, 9], orderable: false }, // Kolom yang tidak bisa diurutkan
-            { targets: [7], type: "num" }, // Kolom Skor KPI sebagai numeric
+            { targets: [0, 1, 5, 8], orderable: false },
+            { targets: [6], type: "num" },
           ],
+          order: [[6, "desc"]], // Default sorting by KPI score descending
           language: {
             search: "Cari:",
             paginate: {
@@ -671,14 +683,6 @@
           },
         });
 
-        // Variabel untuk menyimpan filter aktif
-        var activeFilters = {
-          divisi: "all",
-          peringkat: "all",
-          jabatan: "all",
-          tahun: "all",
-        };
-
         // Fungsi untuk mengupdate teks dropdown
         function updateDropdownText(dropdownId, text) {
           $("#" + dropdownId).text(text);
@@ -687,22 +691,17 @@
         // Event listener untuk filter dropdown
         $(".dropdown-menu").on("click", ".filter-option", function (e) {
           e.preventDefault();
+          e.stopPropagation();
 
-          // Ambil tipe filter dari atribut data-filter pada tombol dropdown
-          var filterType = $(this)
-            .closest(".dropdown")
-            .find("button")
-            .data("filter");
+          var filterType = $(this).data("filter");
           var value = $(this).data("value");
+          var text = $(this).text();
 
           // Update teks dropdown
           updateDropdownText(
-            $(this).closest(".dropdown").find("button").attr("id"),
-            $(this).text()
+            "filter" + filterType.charAt(0).toUpperCase() + filterType.slice(1),
+            text
           );
-
-          // Simpan nilai filter
-          activeFilters[filterType] = value;
 
           // Update class active
           $(this)
@@ -712,51 +711,57 @@
           $(this).addClass("active");
 
           // Terapkan filter
-          applyFilters();
+          applyFilters(filterType, value);
         });
 
-        // Fungsi untuk menerapkan semua filter
-        function applyFilters() {
-          // Reset pencarian di semua kolom
-          table.columns().search("").draw();
+        // Fungsi untuk menerapkan filter
+        function applyFilters(filterType, value) {
+          switch (filterType) {
+            case "divisi":
+              if (value !== "all") {
+                table
+                  .column(3)
+                  .search("^" + value + "$", true, false)
+                  .draw();
+              } else {
+                table.column(3).search("").draw();
+              }
+              break;
 
-          // Terapkan filter Divisi (kolom 3)
-          if (activeFilters.divisi !== "all") {
-            table.column(3).search(activeFilters.divisi).draw();
-          }
+            case "jabatan":
+              if (value !== "all") {
+                table
+                  .column(4)
+                  .search("^" + value + "$", true, false)
+                  .draw();
+              } else {
+                table.column(4).search("").draw();
+              }
+              break;
 
-          // Terapkan filter Jabatan (kolom 5)
-          if (activeFilters.jabatan !== "all") {
-            table.column(5).search(activeFilters.jabatan).draw();
-          }
+            case "tahun":
+              if (value !== "all") {
+                table.column(7).search(value).draw();
+              } else {
+                table.column(7).search("").draw();
+              }
+              break;
 
-          // Terapkan filter Tahun (kolom 8 - Periode)
-          if (activeFilters.tahun !== "all") {
-            table.column(8).search(activeFilters.tahun).draw();
-          }
-
-          // Terapkan sorting berdasarkan Peringkat
-          if (activeFilters.peringkat === "Terbaik") {
-            table.order([7, "desc"]).draw();
-          } else if (activeFilters.peringkat === "Terburuk") {
-            table.order([7, "asc"]).draw();
+            case "urutan":
+              if (value === "desc") {
+                table.order([6, "desc"]).draw();
+              } else {
+                table.order([6, "asc"]).draw();
+              }
+              break;
           }
         }
 
-        // Hapus baris
-        $(".deleterow").on("click", function () {
-          table.row($(this).parents("tr")).remove().draw();
-        });
-
-        // Pencarian global
+        // Fungsi pencarian
         $('input[type="search"]').keyup(function () {
           table.search($(this).val()).draw();
         });
       });
     </script>
-
-    <!-- Jquery Page Js -->
-    <script src="../js/template.js"></script>
-    <script src="../js/page/hr.js"></script>
   </body>
 </html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Detail Absensi</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- project css file  -->
+    <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
+    <style>
+      /* Animasi untuk dropdown */
+      .sub-menu.collapsing {
+        transition: height 0.3s ease, opacity 0.3s ease;
+      }
+
+      .sub-menu.collapse:not(.show) {
+        display: none;
+      }
+
+      .sub-menu.collapse.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk arrow icon */
+      .m-link[aria-expanded="true"] .arrow {
+        transform: rotate(180deg);
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+
+      /* Style untuk grafik */
+      .chart-container {
+        position: relative;
+        height: 300px;
+        margin-bottom: 30px;
+      }
+
+      /* Style untuk card statistik */
+      .stat-card {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-card .icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .stat-card .title {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+
+      .stat-card .value {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      /* Style untuk tabel detail */
+      .detail-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body data-mytask="theme-indigo">
+    <div id="mytask-layout">
+      <!-- sidebar -->
+      <div class="sidebar px-4 py-4 py-md-5 me-0">
+        <div class="d-flex flex-column h-100">
+          <a href="index.html" class="mb-0 brand-icon">
+            <span class="logo-icon">
+              <svg
+                width="35"
+                height="35"
+                fill="currentColor"
+                class="bi bi-clipboard-check"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+                />
+                <path
+                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+                />
+                <path
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"
+                />
+              </svg>
+            </span>
+            <span class="logo-text">Hriss</span>
+          </a>
+
+          <!-- Menu: main ul -->
+          <ul class="menu-list flex-grow-1 mt-3">
+            <li class="collapsed">
+              <a class="m-link" href="HR-dashboard.html">
+                <i class="icofont-home fs-5"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="collapsed">
+              <a class="m-link" href="HR-Penilai.html">
+                <i class="icofont-users-alt-5"></i>
+                <span>Penilaian Karyawan</span>
+              </a>
+            </li>
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#history-components"
+                href="#"
+              >
+                <i class="icofont-history"></i> <span>History</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="history-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-Absensi.html"
+                    ><span>Laporan Hasil Absensi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Peringkat-KPI.html"
+                    ><span>Laporan Hasil KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#masterdata-components"
+                href="#"
+              >
+                <i class="icofont-ui-calculator"></i> <span>Master Data</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="masterdata-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-karyawan.html"
+                    ><span>Karyawan</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Divisi.html"
+                    ><span>Divisi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-edit-kpi.html">
+                    <span>Penilaian KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <!-- Menu: menu collapse btn -->
+          <button
+            type="button"
+            class="btn btn-link sidebar-mini-btn text-light"
+          >
+            <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- main body area -->
+      <div class="main px-lg-4 px-md-4">
+        <!-- Body: Header -->
+        <div class="header">
+          <nav class="navbar py-4">
+            <div class="container-xxl">
+              <!-- header rightbar icon -->
+              <div
+                class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1"
+              >
+                <div class="d-flex"></div>
+                <div
+                  class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center"
+                >
+                  <div class="u-info me-2">
+                    <p class="mb-0 text-end line-height-sm">
+                      <span class="font-weight-bold">Dylan Hunter</span>
+                    </p>
+                    <small>Admin Profile</small>
+                  </div>
+                  <a
+                    class="nav-link dropdown-toggle pulse p-0"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    data-bs-display="static"
+                  >
+                    <img
+                      class="avatar lg rounded-circle img-thumbnail"
+                      src="assets/images/profile_av.png"
+                      alt="profile"
+                    />
+                  </a>
+                  <div
+                    class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0"
+                  >
+                    <div class="card border-0 w280">
+                      <div class="card-body pb-0">
+                        <div class="d-flex py-1">
+                          <img
+                            class="avatar rounded-circle"
+                            src="assets/images/profile_av.png"
+                            alt="profile"
+                          />
+                          <div class="flex-fill ms-3">
+                            <p class="mb-0">
+                              <span class="font-weight-bold">Dylan Hunter</span>
+                            </p>
+                            <small class="">Dylan.hunter@gmail.com</small>
+                          </div>
+                        </div>
+                        <div><hr class="dropdown-divider border-dark" /></div>
+                      </div>
+                      <div class="list-group m-2">
+                        <a
+                          href="ui-elements/auth-signup.html"
+                          class="list-group-item list-group-item-action border-0"
+                        >
+                          <i class="icofont-contact-add fs-5 me-3"></i>Edit
+                          profil diri
+                        </a>
+                        <div><hr class="dropdown-divider border-dark" /></div>
+                        <a
+                          href="ui-elements/auth-signin.html"
+                          class="list-group-item list-group-item-action border-0"
+                        >
+                          <i class="icofont-logout fs-6 me-3"></i>Signout
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- menu toggler -->
+              <button
+                class="navbar-toggler p-0 border-0 menu-toggle order-3"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainHeader"
+              >
+                <span class="fa fa-bars"></span>
+              </button>
+
+              <!-- main menu Search-->
+              <div
+                class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0"
+              >
+                <div class="input-group flex-nowrap input-group-lg">
+                  <button
+                    type="button"
+                    class="input-group-text"
+                    id="addon-wrapping"
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
+                  <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Search"
+                    aria-label="search"
+                    aria-describedby="addon-wrapping"
+                  />
+                  <button
+                    type="button"
+                    class="input-group-text add-member-top"
+                    id="addon-wrappingone"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addUser"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Main content-->
+        <div class="body d-flex py-3">
+          <div class="container-xxl">
+            <!-- Header Info -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <div>
+                        <h4 class="fw-bold mb-0">Detail Absensi Karyawan</h4>
+                        <div class="d-flex align-items-center mt-2">
+                          <span class="me-3"
+                            ><strong>Nama:</strong> John Doe</span
+                          >
+                          <span class="me-3"
+                            ><strong>ID Karyawan:</strong> EMP-00123</span
+                          >
+                          <span class="me-3"><strong>Divisi:</strong> IT</span>
+                          <span><strong>Jabatan:</strong> Staff</span>
+                        </div>
+                      </div>
+                      <div class="dropdown">
+                        <button
+                          class="btn btn-primary dropdown-toggle"
+                          type="button"
+                          id="periodeDropdown"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Periode: Januari 2023
+                        </button>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="periodeDropdown"
+                        >
+                          <li>
+                            <h6 class="dropdown-header">Pilih Periode</h6>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Januari 2023</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Desember 2022</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">November 2022</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Statistik Ringkasan -->
+            <div class="row mb-4">
+              <div class="col-md-3">
+                <div class="stat-card bg-primary text-white">
+                  <div class="icon"><i class="icofont-checked"></i></div>
+                  <div class="title">Hadir</div>
+                  <div class="value">20 Hari</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card bg-warning text-white">
+                  <div class="icon"><i class="icofont-beach-bed"></i></div>
+                  <div class="title">Izin/Sakit</div>
+                  <div class="value">2 Hari</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card bg-danger text-white">
+                  <div class="icon"><i class="icofont-ban"></i></div>
+                  <div class="title">Mangkir</div>
+                  <div class="value">0 Hari</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card bg-info text-white">
+                  <div class="icon"><i class="icofont-stopwatch"></i></div>
+                  <div class="title">Terlambat</div>
+                  <div class="value">3 Kali</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grafik Absensi -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Statistik Absensi Bulanan</h5>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      class="ac-line-transparent"
+                      id="apex-emplyoeeAnalytics"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tabel Detail Absensi -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="card-title">Rincian Absensi Harian</h5>
+                    <button class="btn btn-sm btn-primary">Export Excel</button>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table detail-table">
+                        <thead>
+                          <tr>
+                            <th>Tanggal</th>
+                            <th>Hari</th>
+                            <th>Status</th>
+                            <th>Jam Masuk</th>
+                            <th>Jam Keluar</th>
+                            <th>Lama Kerja</th>
+                            <th>Keterangan</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>02/01/2023</td>
+                            <td>Senin</td>
+                            <td><span class="badge bg-success">Hadir</span></td>
+                            <td>08:05</td>
+                            <td>17:10</td>
+                            <td>9 jam 5 menit</td>
+                            <td>-</td>
+                          </tr>
+                          <tr>
+                            <td>03/01/2023</td>
+                            <td>Selasa</td>
+                            <td><span class="badge bg-success">Hadir</span></td>
+                            <td>08:00</td>
+                            <td>17:00</td>
+                            <td>9 jam</td>
+                            <td>-</td>
+                          </tr>
+                          <tr>
+                            <td>04/01/2023</td>
+                            <td>Rabu</td>
+                            <td><span class="badge bg-warning">Izin</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Sakit</td>
+                          </tr>
+                          <tr>
+                            <td>05/01/2023</td>
+                            <td>Kamis</td>
+                            <td><span class="badge bg-success">Hadir</span></td>
+                            <td>08:15</td>
+                            <td>17:05</td>
+                            <td>8 jam 50 menit</td>
+                            <td>Terlambat 15 menit</td>
+                          </tr>
+                          <tr>
+                            <td>06/01/2023</td>
+                            <td>Jumat</td>
+                            <td><span class="badge bg-success">Hadir</span></td>
+                            <td>08:00</td>
+                            <td>16:30</td>
+                            <td>8 jam 30 menit</td>
+                            <td>-</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <!-- Jquery Core Js -->
+    <script src="assets/bundles/libscripts.bundle.js"></script>
+    <!-- Plugin Js-->
+    <script src="assets/bundles/apexcharts.bundle.js"></script>
+    <!-- Plugin Js tabel-->
+    <script src="assets/bundles/dataTables.bundle.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/page/hr.js"></script>
+  </body>
+</html>

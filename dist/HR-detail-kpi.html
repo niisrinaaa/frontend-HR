@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Detail KPI Karyawan</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- project css file  -->
+    <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
+    <!-- Excel Export Library -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <style>
+      /* Animasi untuk dropdown */
+      .sub-menu.collapsing {
+        transition: height 0.3s ease, opacity 0.3s ease;
+      }
+
+      .sub-menu.collapse:not(.show) {
+        display: none;
+      }
+
+      .sub-menu.collapse.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi untuk arrow icon */
+      .m-link[aria-expanded="true"] .arrow {
+        transform: rotate(180deg);
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+
+      /* Style untuk grafik */
+      .chart-container {
+        position: relative;
+        height: 200px;
+        margin-bottom: 30px;
+      }
+
+      /* Style untuk card statistik */
+      .stat-card {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color: white;
+      }
+
+      .stat-card .icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .stat-card .title {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .stat-card .value {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      /* Style untuk tabel detail */
+      .detail-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+      }
+
+      /* Tambahan style untuk KPI */
+      .kpi-progress {
+        height: 10px;
+        border-radius: 5px;
+      }
+
+      .progress-percentage {
+        font-size: 0.8rem;
+        margin-top: 3px;
+        text-align: right;
+      }
+
+      .kpi-badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-weight: 500;
+        font-size: 0.8rem;
+      }
+
+      .badge-excellent {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+      }
+
+      .badge-good {
+        background-color: rgba(23, 162, 184, 0.2);
+        color: #17a2b8;
+      }
+
+      .badge-average {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: #ffc107;
+      }
+
+      .badge-poor {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+      }
+
+      /* Style untuk tabel bulanan */
+      .monthly-table th {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa;
+        z-index: 10;
+      }
+
+      .monthly-score {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .monthly-total {
+        font-weight: bold;
+        background-color: #f8f9fa;
+      }
+
+      .table-container {
+        max-height: 500px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+
+  <body data-mytask="theme-indigo">
+    <div id="mytask-layout">
+      <!-- sidebar -->
+      <div class="sidebar px-4 py-4 py-md-5 me-0">
+        <div class="d-flex flex-column h-100">
+          <a href="index.html" class="mb-0 brand-icon">
+            <span class="logo-icon">
+              <svg
+                width="35"
+                height="35"
+                fill="currentColor"
+                class="bi bi-clipboard-check"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+                />
+                <path
+                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+                />
+                <path
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"
+                />
+              </svg>
+            </span>
+            <span class="logo-text">Hriss</span>
+          </a>
+
+          <!-- Menu: main ul -->
+          <ul class="menu-list flex-grow-1 mt-3">
+            <li class="collapsed">
+              <a class="m-link" href="HR-dashboard.html">
+                <i class="icofont-home fs-5"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="collapsed">
+              <a class="m-link" href="HR-Penilai.html">
+                <i class="icofont-users-alt-5"></i>
+                <span>Penilaian Karyawan</span>
+              </a>
+            </li>
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#history-components"
+                href="#"
+              >
+                <i class="icofont-history"></i> <span>History</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="history-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-Absensi.html"
+                    ><span>Laporan Hasil Absensi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Peringkat-KPI.html"
+                    ><span>Laporan Hasil KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="collapsed">
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#masterdata-components"
+                href="#"
+              >
+                <i class="icofont-ui-calculator"></i> <span>Master Data</span>
+                <span
+                  class="arrow icofont-dotted-down ms-auto text-end fs-5"
+                ></span>
+              </a>
+              <!-- Menu: Sub menu ul -->
+              <ul
+                class="sub-menu collapse"
+                id="masterdata-components"
+                style="transition: all 0.3s ease"
+              >
+                <li>
+                  <a class="ms-link" href="HR-karyawan.html"
+                    ><span>Karyawan</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-Divisi.html"
+                    ><span>Divisi</span></a
+                  >
+                </li>
+                <li>
+                  <a class="ms-link" href="HR-edit-kpi.html">
+                    <span>Penilaian KPI</span></a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <!-- Menu: menu collapse btn -->
+          <button
+            type="button"
+            class="btn btn-link sidebar-mini-btn text-light"
+          >
+            <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- main body area -->
+      <div class="main px-lg-4 px-md-4">
+        <!-- Body: Header -->
+        <div class="header">
+          <nav class="navbar py-4">
+            <div class="container-xxl">
+              <!-- header rightbar icon -->
+              <div
+                class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1"
+              >
+                <div class="d-flex"></div>
+                <div
+                  class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center"
+                >
+                  <div class="u-info me-2">
+                    <p class="mb-0 text-end line-height-sm">
+                      <span class="font-weight-bold">Dylan Hunter</span>
+                    </p>
+                    <small>Admin Profile</small>
+                  </div>
+                  <a
+                    class="nav-link dropdown-toggle pulse p-0"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    data-bs-display="static"
+                  >
+                    <img
+                      class="avatar lg rounded-circle img-thumbnail"
+                      src="assets/images/profile_av.png"
+                      alt="profile"
+                    />
+                  </a>
+                  <div
+                    class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0"
+                  >
+                    <div class="card border-0 w280">
+                      <div class="card-body pb-0">
+                        <div class="d-flex py-1">
+                          <img
+                            class="avatar rounded-circle"
+                            src="assets/images/profile_av.png"
+                            alt="profile"
+                          />
+                          <div class="flex-fill ms-3">
+                            <p class="mb-0">
+                              <span class="font-weight-bold">Dylan Hunter</span>
+                            </p>
+                            <small class="">Dylan.hunter@gmail.com</small>
+                          </div>
+                        </div>
+                        <div><hr class="dropdown-divider border-dark" /></div>
+                      </div>
+                      <div class="list-group m-2">
+                        <a
+                          href="ui-elements/auth-signup.html"
+                          class="list-group-item list-group-item-action border-0"
+                        >
+                          <i class="icofont-contact-add fs-5 me-3"></i>Edit
+                          profil diri
+                        </a>
+                        <div><hr class="dropdown-divider border-dark" /></div>
+                        <a
+                          href="ui-elements/auth-signin.html"
+                          class="list-group-item list-group-item-action border-0"
+                        >
+                          <i class="icofont-logout fs-6 me-3"></i>Signout
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- menu toggler -->
+              <button
+                class="navbar-toggler p-0 border-0 menu-toggle order-3"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainHeader"
+              >
+                <span class="fa fa-bars"></span>
+              </button>
+
+              <!-- main menu Search-->
+              <div
+                class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0"
+              >
+                <div class="input-group flex-nowrap input-group-lg">
+                  <button
+                    type="button"
+                    class="input-group-text"
+                    id="addon-wrapping"
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
+                  <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Search"
+                    aria-label="search"
+                    aria-describedby="addon-wrapping"
+                  />
+                  <button
+                    type="button"
+                    class="input-group-text add-member-top"
+                    id="addon-wrappingone"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addUser"
+                  >
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Main content-->
+        <div class="body d-flex py-3">
+          <div class="container-xxl">
+            <!-- Header Info -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <div>
+                        <h4 class="fw-bold mb-0">Detail KPI Karyawan</h4>
+                        <div class="d-flex align-items-center mt-2">
+                          <span class="me-3"
+                            ><strong>Nama:</strong> John Doe</span
+                          >
+                          <span class="me-3"
+                            ><strong>ID Karyawan:</strong> EMP-00123</span
+                          >
+                          <span class="me-3"><strong>Divisi:</strong> IT</span>
+                          <span><strong>Jabatan:</strong> Staff</span>
+                        </div>
+                      </div>
+                      <div class="dropdown">
+                        <button
+                          class="btn btn-primary dropdown-toggle"
+                          type="button"
+                          id="periodeDropdown"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Periode: Q1 2023
+                        </button>
+                        <ul
+                          class="dropdown-menu"
+                          aria-labelledby="periodeDropdown"
+                        >
+                          <li>
+                            <h6 class="dropdown-header">Pilih Periode</h6>
+                          </li>
+                          <li><a class="dropdown-item" href="#">Q1 2023</a></li>
+                          <li><a class="dropdown-item" href="#">Q4 2022</a></li>
+                          <li><a class="dropdown-item" href="#">Q3 2022</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Statistik Ringkasan KPI -->
+            <div class="row mb-4">
+              <div class="col-md-3">
+                <div class="stat-card bg-success">
+                  <div class="icon"><i class="icofont-checked"></i></div>
+                  <div class="title">Total Nilai KPI</div>
+                  <div class="value">
+                    88.5 <small class="fs-6">(Excellent)</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card bg-info">
+                  <div class="icon"><i class="icofont-trophy"></i></div>
+                  <div class="title">Target</div>
+                  <div class="value">
+                    85.0 <small class="fs-6">(Melebihi)</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card bg-warning">
+                  <div class="icon"><i class="icofont-chart-line"></i></div>
+                  <div class="title">Performa</div>
+                  <div class="value">
+                    7.8 <small class="fs-6">(Di Atas Rata-rata)</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card bg-danger">
+                  <div class="icon"><i class="icofont-medal"></i></div>
+                  <div class="title">Peringkat</div>
+                  <div class="value">
+                    12 <small class="fs-6">(Dari 50 Karyawan)</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grafik Perkembangan KPI -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="card-title">Perkembangan Nilai KPI</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-container">
+                      <canvas id="kpiTrendChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detail Indikator KPI -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="card-title">Indikator KPI</h5>
+                    <button class="btn btn-sm btn-primary">Export Excel</button>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table detail-table">
+                        <thead>
+                          <tr>
+                            <th>Indikator</th>
+                            <th>Bobot</th>
+                            <th>Target</th>
+                            <th>Pencapaian</th>
+                            <th>Nilai</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Produktivitas</td>
+                            <td>30%</td>
+                            <td>90%</td>
+                            <td>95%</td>
+                            <td>28.5</td>
+                            <td>
+                              <span class="kpi-badge badge-excellent"
+                                >Excellent</span
+                              >
+                            </td>
+                            <td>
+                              <div class="progress kpi-progress">
+                                <div
+                                  class="progress-bar bg-success"
+                                  role="progressbar"
+                                  style="width: 95%"
+                                  aria-valuenow="95"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="progress-percentage">95%</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Kualitas Kerja</td>
+                            <td>25%</td>
+                            <td>85%</td>
+                            <td>88%</td>
+                            <td>22.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                            <td>
+                              <div class="progress kpi-progress">
+                                <div
+                                  class="progress-bar bg-info"
+                                  role="progressbar"
+                                  style="width: 88%"
+                                  aria-valuenow="88"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="progress-percentage">88%</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Kedisiplinan</td>
+                            <td>20%</td>
+                            <td>100%</td>
+                            <td>92%</td>
+                            <td>18.4</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                            <td>
+                              <div class="progress kpi-progress">
+                                <div
+                                  class="progress-bar bg-warning"
+                                  role="progressbar"
+                                  style="width: 92%"
+                                  aria-valuenow="92"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="progress-percentage">92%</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Inisiatif</td>
+                            <td>15%</td>
+                            <td>80%</td>
+                            <td>85%</td>
+                            <td>12.75</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                            <td>
+                              <div class="progress kpi-progress">
+                                <div
+                                  class="progress-bar bg-primary"
+                                  role="progressbar"
+                                  style="width: 85%"
+                                  aria-valuenow="85"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="progress-percentage">85%</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Kerjasama Tim</td>
+                            <td>10%</td>
+                            <td>90%</td>
+                            <td>87%</td>
+                            <td>8.7</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                            <td>
+                              <div class="progress kpi-progress">
+                                <div
+                                  class="progress-bar bg-secondary"
+                                  role="progressbar"
+                                  style="width: 87%"
+                                  aria-valuenow="87"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="progress-percentage">87%</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr class="table-active">
+                            <th>Total</th>
+                            <th>100%</th>
+                            <th>-</th>
+                            <th>-</th>
+                            <th>88.5</th>
+                            <th>
+                              <span class="kpi-badge badge-excellent"
+                                >Excellent</span
+                              >
+                            </th>
+                            <th>
+                              <div class="progress kpi-progress">
+                                <div
+                                  class="progress-bar bg-success"
+                                  role="progressbar"
+                                  style="width: 88.5%"
+                                  aria-valuenow="88.5"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="progress-percentage">88.5%</div>
+                            </th>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rekapan KPI Bulanan -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="card-title">Rekapan KPI Bulanan</h5>
+                    <button
+                      class="btn btn-sm btn-primary"
+                      id="exportMonthlyBtn"
+                    >
+                      Export Excel
+                    </button>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-container">
+                      <table class="table monthly-table" id="monthlyKpiTable">
+                        <thead>
+                          <tr>
+                            <th>Bulan</th>
+                            <th>Produktivitas</th>
+                            <th>Kualitas Kerja</th>
+                            <th>Kedisiplinan</th>
+                            <th>Inisiatif</th>
+                            <th>Kerjasama Tim</th>
+                            <th>Total KPI</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Januari</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Februari</td>
+                            <td class="monthly-score">86</td>
+                            <td class="monthly-score">83</td>
+                            <td class="monthly-score">91</td>
+                            <td class="monthly-score">79</td>
+                            <td class="monthly-score">84</td>
+                            <td class="monthly-total">83.2</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Maret</td>
+                            <td class="monthly-score">87</td>
+                            <td class="monthly-score">84</td>
+                            <td class="monthly-score">92</td>
+                            <td class="monthly-score">80</td>
+                            <td class="monthly-score">83</td>
+                            <td class="monthly-total">84.3</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>April</td>
+                            <td class="monthly-score">88</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">93</td>
+                            <td class="monthly-score">81</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-total">85.1</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Mei</td>
+                            <td class="monthly-score">89</td>
+                            <td class="monthly-score">86</td>
+                            <td class="monthly-score">94</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">81</td>
+                            <td class="monthly-total">86.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Juni</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">87</td>
+                            <td class="monthly-score">95</td>
+                            <td class="monthly-score">83</td>
+                            <td class="monthly-score">80</td>
+                            <td class="monthly-total">86.9</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Juli</td>
+                            <td class="monthly-score">89</td>
+                            <td class="monthly-score">86</td>
+                            <td class="monthly-score">94</td>
+                            <td class="monthly-score">84</td>
+                            <td class="monthly-score">81</td>
+                            <td class="monthly-total">86.7</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr class="table-active">
+                            <th>Rata-rata</th>
+                            <th>88.8</th>
+                            <th>85.8</th>
+                            <th>92.0</th>
+                            <th>83.0</th>
+                            <th>83.0</th>
+                            <th>86.5</th>
+                            <th>
+                              <span class="kpi-badge badge-good">Good</span>
+                            </th>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="assets/bundles/libscripts.bundle.js"></script>
+    <script src="assets/bundles/apexcharts.bundle.js"></script>
+    <script src="assets/bundles/dataTables.bundle.js"></script>
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      // Inisialisasi grafik
+      document.addEventListener("DOMContentLoaded", function () {
+        // Grafik Trend KPI
+        const trendCtx = document
+          .getElementById("kpiTrendChart")
+          .getContext("2d");
+        let trendChart = new Chart(trendCtx, {
+          type: "line",
+          data: {
+            labels: [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "Mei",
+              "Jun",
+              "Jul",
+              "Agu",
+              "Sep",
+              "Okt",
+              "Nov",
+              "Des",
+            ],
+            datasets: [
+              {
+                label: "Nilai KPI",
+                data: [
+                  82, 83.2, 84.3, 85.1, 86.0, 86.9, 86.7, 87.5, 88.2, 87.6,
+                  88.3, 88.9,
+                ],
+                borderColor: "#0d6efd",
+                backgroundColor: "rgba(13, 110, 253, 0.1)",
+                borderWidth: 2,
+                tension: 0.1,
+                fill: true,
+              },
+              {
+                label: "Target",
+                data: [80, 81, 82, 83, 84, 85, 85, 85, 85, 85, 85, 85],
+                borderColor: "#fd7e14",
+                backgroundColor: "transparent",
+                borderWidth: 2,
+                borderDash: [5, 5],
+                tension: 0.1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: false,
+                min: 75,
+                max: 95,
+              },
+            },
+          },
+        });
+
+        // Fungsi untuk ekspor ke Excel
+        document
+          .getElementById("exportMonthlyBtn")
+          .addEventListener("click", function () {
+            // Ambil tabel yang akan diekspor
+            const table = document.getElementById("monthlyKpiTable");
+
+            // Konversi tabel ke worksheet Excel
+            const workbook = XLSX.utils.table_to_book(table, {
+              sheet: "Rekapan KPI Bulanan",
+            });
+
+            // Ekspor ke file Excel
+            XLSX.writeFile(workbook, "Rekapan_KPI_Bulanan.xlsx");
+          });
+      });
+    </script>
+  </body>
+</html>
