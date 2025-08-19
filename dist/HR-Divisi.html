@@ -55,30 +55,56 @@
         font-weight: 500;
       }
 
-      /* Style untuk tabel */
-      #divisiTable {
-        table-layout: fixed;
-        width: 100%;
+      /* Style untuk tabel biasa */
+      .table-container {
+        overflow-x: auto;
       }
 
-      #divisiTable th,
-      #divisiTable td {
-        padding: 8px 12px; /* Padding lebih kecil */
+      .divisi-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .divisi-table th,
+      .divisi-table td {
+        padding: 8px 12px;
+        border: 1px solid #dee2e6;
         vertical-align: middle;
       }
 
-      /* Kolom deskripsi dengan text truncate */
-      #divisiTable .deskripsi-cell {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px; /* Lebar maksimum deskripsi */
+      .divisi-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
       }
 
-      /* Kolom aksi lebih compact */
-      #divisiTable .aksi-cell {
-        width: 100px; /* Lebar tetap untuk kolom aksi */
+      .divisi-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      .divisi-table tr:hover {
+        background-color: #e9ecef;
+      }
+
+      .deskripsi-cell {
+        max-width: 200px;
+        white-space: normal;
+      }
+
+      .aksi-cell {
+        width: 100px;
         text-align: center;
+      }
+
+      /* Responsive table */
+      @media (max-width: 768px) {
+        .divisi-table {
+          font-size: 14px;
+        }
+
+        .divisi-table th,
+        .divisi-table td {
+          padding: 6px 8px;
+        }
       }
     </style>
   </head>
@@ -350,32 +376,27 @@
                 <div class="col-sm-12">
                   <div class="card mb-3">
                     <div class="card-body">
-                      <table
-                        id="divisiTable"
-                        class="table table-hover align-middle mb-0"
-                        style="width: 100%"
-                      >
-                        <thead>
-                          <tr>
-                            <th style="width: 80px">No</th>
-                            <!-- Lebar kolom No diperkecil -->
-                            <th style="width: 100px">Nama</th>
-                            <th style="width: 100px">Jumlah Karyawan</th>
-                            <!-- Header disingkat -->
-                            <th style="width: 140px">Kepala Divisi</th>
-                            <th style="width: 90px">KPI bulan lalu </th>
-                            <!-- Header disingkat -->
-                            <th style="width: 90px">KPI bulan ini </th>
-                            <!-- Header disingkat -->
-                            <th >Deskripsi</th>
-                            <th style="width: 100px">Aksi</th>
-                            <!-- Lebar kolom aksi diperkecil -->
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- Data akan diisi oleh JavaScript -->
-                        </tbody>
-                      </table>
+                      <div class="table-container">
+                        <table class="divisi-table">
+                          <thead>
+                            <tr>
+                              <th style="width: 50px">No</th>
+                              <th>Nama</th>
+                              <th style="width: 100px">Jumlah Karyawan</th>
+                              <th style="width: 140px">Kepala Divisi</th>
+                              <th style="width: 90px">KPI Lalu</th>
+                              <th style="width: 90px">KPI Ini</th>
+                              <th>Deskripsi</th>
+                              <th style="width: 100px" class="aksi-cell">
+                                Aksi
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody id="divisiTableBody">
+                            <!-- Data akan diisi oleh JavaScript -->
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -544,40 +565,40 @@
         let currentEditId = null;
         let currentDeleteId = null;
 
-        // Inisialisasi DataTable
-        const table = $("#divisiTable").DataTable({
-          responsive: true,
-          dom: '<"top"f>rt<"bottom"lip><"clear">',
-          columns: [
-            { data: "id" },
-            { data: "nama" },
-            { data: "jumlahKaryawan" },
-            { data: "kepalaDivisi" },
-            { data: "kpiBulanLalu" },
-            { data: "kpiBulanIni" },
-            { data: "deskripsi" },
-            {
-              data: null,
-              render: function (data, type, row) {
-                return `
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-secondary edit-btn" data-id="${row.id}">
-                                    <i class="icofont-edit text-success"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary delete-btn" data-id="${row.id}">
-                                    <i class="icofont-ui-delete text-danger"></i>
-                                </button>
-                            </div>
-                        `;
-              },
-              orderable: false,
-            },
-          ],
-        });
-
         // Fungsi untuk memuat data ke tabel
         function loadDataToTable() {
-          table.clear().rows.add(divisiData).draw();
+          const tbody = document.getElementById("divisiTableBody");
+          tbody.innerHTML = "";
+
+          divisiData.forEach((divisi, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${divisi.nama}</td>
+              <td>${divisi.jumlahKaryawan}</td>
+              <td>${divisi.kepalaDivisi}</td>
+              <td>${divisi.kpiBulanLalu}</td>
+              <td>${divisi.kpiBulanIni}</td>
+              <td class="deskripsi-cell" title="${divisi.deskripsi}">${
+              divisi.deskripsi
+            }</td>
+              <td class="aksi-cell">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-outline-secondary edit-btn" data-id="${
+                    divisi.id
+                  }">
+                    <i class="icofont-edit text-success"></i>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary delete-btn" data-id="${
+                    divisi.id
+                  }">
+                    <i class="icofont-ui-delete text-danger"></i>
+                  </button>
+                </div>
+              </td>
+            `;
+            tbody.appendChild(row);
+          });
         }
 
         // Fungsi untuk mendapatkan ID berikutnya
@@ -637,7 +658,7 @@
           $("#addDivisiModal").modal("hide");
         });
 
-        // Event untuk tombol Edit
+        // Event untuk tombol Edit (menggunakan event delegation)
         $(document).on("click", ".edit-btn", function () {
           const id = $(this).data("id");
           const divisi = divisiData.find((d) => d.id === id);
@@ -652,7 +673,7 @@
           }
         });
 
-        // Event untuk tombol Hapus
+        // Event untuk tombol Hapus (menggunakan event delegation)
         $(document).on("click", ".delete-btn", function () {
           currentDeleteId = $(this).data("id");
           $("#confirmDeleteModal").modal("show");
