@@ -45,6 +45,41 @@
       .arrow {
         transition: transform 0.3s ease;
       }
+
+      /* Style untuk modal tambah/edit */
+      .modal-body .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .modal-body label {
+        font-weight: 500;
+      }
+
+      /* Style untuk tabel */
+      #divisiTable {
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      #divisiTable th,
+      #divisiTable td {
+        padding: 8px 12px; /* Padding lebih kecil */
+        vertical-align: middle;
+      }
+
+      /* Kolom deskripsi dengan text truncate */
+      #divisiTable .deskripsi-cell {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px; /* Lebar maksimum deskripsi */
+      }
+
+      /* Kolom aksi lebih compact */
+      #divisiTable .aksi-cell {
+        width: 100px; /* Lebar tetap untuk kolom aksi */
+        text-align: center;
+      }
     </style>
   </head>
 
@@ -70,7 +105,7 @@
                   d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
                 />
                 <path
-                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3z"
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-3z"
                 />
               </svg>
             </span>
@@ -301,7 +336,7 @@
                         type="button"
                         class="btn btn-dark btn-set-task w-sm-100"
                         data-bs-toggle="modal"
-                        data-bs-target="#addholiday"
+                        data-bs-target="#addDivisiModal"
                       >
                         <i class="icofont-plus-circle me-2 fs-6"></i>Tambah
                         Divisi
@@ -316,58 +351,29 @@
                   <div class="card mb-3">
                     <div class="card-body">
                       <table
-                        id="myProjectTable"
+                        id="divisiTable"
                         class="table table-hover align-middle mb-0"
                         style="width: 100%"
                       >
                         <thead>
                           <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Jumlah Karyawan</th>
-                            <th>Kepala Divisi</th>
-                            <th>KPI Bulan Lalu</th>
-                            <th>Kpi Bulan Ini</th>
-                            <th>Deskripsi</th>
-                            <th>aksi</th>
+                            <th style="width: 80px">No</th>
+                            <!-- Lebar kolom No diperkecil -->
+                            <th style="width: 100px">Nama</th>
+                            <th style="width: 100px">Jumlah Karyawan</th>
+                            <!-- Header disingkat -->
+                            <th style="width: 140px">Kepala Divisi</th>
+                            <th style="width: 90px">KPI bulan lalu </th>
+                            <!-- Header disingkat -->
+                            <th style="width: 90px">KPI bulan ini </th>
+                            <!-- Header disingkat -->
+                            <th >Deskripsi</th>
+                            <th style="width: 100px">Aksi</th>
+                            <!-- Lebar kolom aksi diperkecil -->
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>01</td>
-                            <td>Marketing</td>
-                            <td>20</td>
-                            <td>Herlambang</td>
-                            <td>81</td>
-                            <td>85</td>
-                            <td>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Aspernatur sed minus repellendus doloribus
-                              cupiditate tenetur illum, culpa nemo laborum,
-                              eligendi praesentium quaerat perspiciatis hic
-                              dolorem? Impedit aliquid saepe tenetur ipsum.
-                            </td>
-                            <td>
-                              <div
-                                class="btn-group"
-                                role="group"
-                                aria-label="Basic outlined example"
-                              >
-                                <button
-                                  type="button"
-                                  class="btn btn-outline-secondary"
-                                >
-                                  <i class="icofont-edit text-success"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  class="btn btn-outline-secondary deleterow"
-                                >
-                                  <i class="icofont-ui-delete text-danger"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
+                          <!-- Data akan diisi oleh JavaScript -->
                         </tbody>
                       </table>
                     </div>
@@ -378,10 +384,10 @@
             </div>
           </div>
 
-          <!-- tambah karyawan -->
+          <!-- Modal Tambah/Edit Divisi -->
           <div
             class="modal fade"
-            id="addholiday"
+            id="addDivisiModal"
             tabindex="-1"
             aria-hidden="true"
           >
@@ -390,7 +396,7 @@
             >
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title fw-bold" id="addholidayLabel">
+                  <h5 class="modal-title fw-bold" id="addDivisiModalLabel">
                     Tambah Divisi
                   </h5>
                   <button
@@ -402,26 +408,38 @@
                 </div>
                 <div class="modal-body">
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"
+                    <label for="namaDivisi" class="form-label"
                       >Nama Divisi</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="exampleFormControlInput1"
+                      id="namaDivisi"
                       placeholder="Nama Divisi"
+                      required
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput2778" class="form-label"
-                      >Deskripsi</label
+                    <label for="kepalaDivisi" class="form-label"
+                      >Kepala Divisi</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="exampleFormControlInput2778"
-                      placeholder="Deskripsi"
+                      id="kepalaDivisi"
+                      placeholder="Kepala Divisi"
                     />
+                  </div>
+                  <div class="mb-3">
+                    <label for="deskripsiDivisi" class="form-label"
+                      >Deskripsi</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="deskripsiDivisi"
+                      rows="3"
+                      placeholder="Deskripsi Divisi"
+                    ></textarea>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -430,9 +448,56 @@
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Selesai
+                    Batal
                   </button>
-                  <button type="submit" class="btn btn-primary">Tambah</button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="saveDivisiBtn"
+                  >
+                    Simpan
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Konfirmasi Hapus -->
+          <div
+            class="modal fade"
+            id="confirmDeleteModal"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Konfirmasi Hapus</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  Apakah Anda yakin ingin menghapus divisi ini?
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    id="confirmDeleteBtn"
+                  >
+                    Hapus
+                  </button>
                 </div>
               </div>
             </div>
@@ -449,5 +514,163 @@
     <script src="assets/bundles/dataTables.bundle.js"></script>
     <script src="../js/template.js"></script>
     <script src="../js/page/hr.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Data contoh divisi
+        let divisiData = [
+          {
+            id: 1,
+            nama: "Marketing",
+            jumlahKaryawan: 20,
+            kepalaDivisi: "Herlambang",
+            kpiBulanLalu: 81,
+            kpiBulanIni: 85,
+            deskripsi:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur sed minus repellendus doloribus cupiditate tenetur illum, culpa nemo laborum, eligendi praesentium quaerat perspiciatis hic dolorem? Impedit aliquid saepe tenetur ipsum.",
+          },
+          {
+            id: 2,
+            nama: "IT",
+            jumlahKaryawan: 15,
+            kepalaDivisi: "Budi Santoso",
+            kpiBulanLalu: 78,
+            kpiBulanIni: 82,
+            deskripsi:
+              "Divisi yang menangani semua kebutuhan teknologi informasi perusahaan.",
+          },
+        ];
+
+        let currentEditId = null;
+        let currentDeleteId = null;
+
+        // Inisialisasi DataTable
+        const table = $("#divisiTable").DataTable({
+          responsive: true,
+          dom: '<"top"f>rt<"bottom"lip><"clear">',
+          columns: [
+            { data: "id" },
+            { data: "nama" },
+            { data: "jumlahKaryawan" },
+            { data: "kepalaDivisi" },
+            { data: "kpiBulanLalu" },
+            { data: "kpiBulanIni" },
+            { data: "deskripsi" },
+            {
+              data: null,
+              render: function (data, type, row) {
+                return `
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-secondary edit-btn" data-id="${row.id}">
+                                    <i class="icofont-edit text-success"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary delete-btn" data-id="${row.id}">
+                                    <i class="icofont-ui-delete text-danger"></i>
+                                </button>
+                            </div>
+                        `;
+              },
+              orderable: false,
+            },
+          ],
+        });
+
+        // Fungsi untuk memuat data ke tabel
+        function loadDataToTable() {
+          table.clear().rows.add(divisiData).draw();
+        }
+
+        // Fungsi untuk mendapatkan ID berikutnya
+        function getNextId() {
+          return divisiData.length > 0
+            ? Math.max(...divisiData.map((d) => d.id)) + 1
+            : 1;
+        }
+
+        // Event untuk tombol Tambah Divisi
+        $(".btn-set-task").click(function () {
+          currentEditId = null;
+          $("#addDivisiModalLabel").text("Tambah Divisi");
+          $("#namaDivisi").val("");
+          $("#kepalaDivisi").val("");
+          $("#deskripsiDivisi").val("");
+          $("#addDivisiModal").modal("show");
+        });
+
+        // Event untuk tombol Simpan (Tambah/Edit)
+        $("#saveDivisiBtn").click(function () {
+          const nama = $("#namaDivisi").val().trim();
+          const kepala = $("#kepalaDivisi").val().trim();
+          const deskripsi = $("#deskripsiDivisi").val().trim();
+
+          if (!nama) {
+            alert("Nama Divisi harus diisi!");
+            return;
+          }
+
+          if (currentEditId) {
+            // Edit data existing
+            const index = divisiData.findIndex((d) => d.id === currentEditId);
+            if (index !== -1) {
+              divisiData[index] = {
+                ...divisiData[index],
+                nama: nama,
+                kepalaDivisi: kepala || "-",
+                deskripsi: deskripsi || "-",
+              };
+            }
+          } else {
+            // Tambah data baru
+            const newDivisi = {
+              id: getNextId(),
+              nama: nama,
+              jumlahKaryawan: 0,
+              kepalaDivisi: kepala || "-",
+              kpiBulanLalu: 0,
+              kpiBulanIni: 0,
+              deskripsi: deskripsi || "-",
+            };
+            divisiData.push(newDivisi);
+          }
+
+          loadDataToTable();
+          $("#addDivisiModal").modal("hide");
+        });
+
+        // Event untuk tombol Edit
+        $(document).on("click", ".edit-btn", function () {
+          const id = $(this).data("id");
+          const divisi = divisiData.find((d) => d.id === id);
+
+          if (divisi) {
+            currentEditId = id;
+            $("#addDivisiModalLabel").text("Edit Divisi");
+            $("#namaDivisi").val(divisi.nama);
+            $("#kepalaDivisi").val(divisi.kepalaDivisi);
+            $("#deskripsiDivisi").val(divisi.deskripsi);
+            $("#addDivisiModal").modal("show");
+          }
+        });
+
+        // Event untuk tombol Hapus
+        $(document).on("click", ".delete-btn", function () {
+          currentDeleteId = $(this).data("id");
+          $("#confirmDeleteModal").modal("show");
+        });
+
+        // Event untuk tombol Konfirmasi Hapus
+        $("#confirmDeleteBtn").click(function () {
+          if (currentDeleteId) {
+            divisiData = divisiData.filter((d) => d.id !== currentDeleteId);
+            loadDataToTable();
+            $("#confirmDeleteModal").modal("hide");
+            currentDeleteId = null;
+          }
+        });
+
+        // Muat data awal ke tabel
+        loadDataToTable();
+      });
+    </script>
   </body>
 </html>
