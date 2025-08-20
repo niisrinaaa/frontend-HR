@@ -12,20 +12,17 @@
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
     <style>
-      /* Animasi untuk dropdown */
+      /* Animasi dropdown */
       .sub-menu.collapsing {
         transition: height 0.3s ease, opacity 0.3s ease;
       }
-
       .sub-menu.collapse:not(.show) {
         display: none;
       }
-
       .sub-menu.collapse.show {
         display: block;
         animation: fadeIn 0.3s ease;
       }
-
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -36,50 +33,72 @@
           transform: translateY(0);
         }
       }
-
-      /* Animasi untuk arrow icon */
       .m-link[aria-expanded="true"] .arrow {
         transform: rotate(180deg);
       }
-
       .arrow {
         transition: transform 0.3s ease;
       }
 
-      /* Style untuk grafik */
-      .chart-container {
-        position: relative;
-        height: 300px;
-        margin-bottom: 30px;
-      }
-
-      /* Style untuk card statistik */
+      /* Stat Card */
       .stat-card {
         border-radius: 10px;
         padding: 15px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        text-align: center;
       }
-
       .stat-card .icon {
         font-size: 2rem;
         margin-bottom: 10px;
       }
-
       .stat-card .title {
         font-size: 0.9rem;
         color: #6c757d;
       }
-
       .stat-card .value {
         font-size: 1.5rem;
         font-weight: bold;
       }
 
-      /* Style untuk tabel detail */
+      /* Detail Table */
       .detail-table th {
         background-color: #f8f9fa;
         font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* RESPONSIVE FIX */
+      @media (max-width: 768px) {
+        .stat-card .value {
+          font-size: 1.2rem;
+        }
+        .stat-card .icon {
+          font-size: 1.5rem;
+        }
+        .card-body h4 {
+          font-size: 1.2rem;
+        }
+        .card-body span {
+          display: block;
+          margin-bottom: 4px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .stat-card {
+          padding: 8px;
+        }
+        .stat-card .icon {
+          font-size: 1.2rem;
+          margin-bottom: 4px;
+        }
+        .stat-card .title {
+          font-size: 0.7rem;
+        }
+        .stat-card .value {
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
@@ -331,11 +350,11 @@
                 <div class="card">
                   <div class="card-body">
                     <div
-                      class="d-flex align-items-center justify-content-between"
+                      class="d-flex flex-wrap align-items-start justify-content-between"
                     >
-                      <div>
-                        <h4 class="fw-bold mb-0">Detail Absensi Karyawan</h4>
-                        <div class="d-flex align-items-center mt-2">
+                      <div class="mb-3 mb-md-0">
+                        <h4 class="fw-bold mb-2">Detail Absensi Karyawan</h4>
+                        <div class="d-flex flex-wrap">
                           <span class="me-3"
                             ><strong>Nama:</strong> John Doe</span
                           >
@@ -381,29 +400,29 @@
             </div>
 
             <!-- Statistik Ringkasan -->
-            <div class="row mb-4">
-              <div class="col-md-3">
+            <div class="row mb-4 text-center">
+              <div class="col-3">
                 <div class="stat-card bg-primary text-white">
                   <div class="icon"><i class="icofont-checked"></i></div>
                   <div class="title">Hadir</div>
                   <div class="value">20 Hari</div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-3">
                 <div class="stat-card bg-primary text-white">
                   <div class="icon"><i class="icofont-beach-bed"></i></div>
                   <div class="title">Izin/Sakit</div>
                   <div class="value">2 Hari</div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-3">
                 <div class="stat-card bg-primary text-white">
                   <div class="icon"><i class="icofont-ban"></i></div>
                   <div class="title">Mangkir</div>
                   <div class="value">0 Hari</div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-3">
                 <div class="stat-card bg-primary text-white">
                   <div class="icon"><i class="icofont-stopwatch"></i></div>
                   <div class="title">Terlambat</div>
@@ -417,14 +436,18 @@
               <div class="col-12">
                 <div class="card">
                   <div
-                    class="card-header d-flex justify-content-between align-items-center"
+                    class="card-header d-flex flex-wrap justify-content-between align-items-center"
                   >
-                    <h5 class="card-title">Rincian Absensi Harian</h5>
+                    <h5 class="card-title mb-2 mb-md-0">
+                      Rincian Absensi Harian
+                    </h5>
                     <button class="btn btn-sm btn-primary">Export Excel</button>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table detail-table">
+                      <table
+                        class="table detail-table table-bordered table-hover"
+                      >
                         <thead>
                           <tr>
                             <th>Tanggal</th>
@@ -493,7 +516,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Jquery Core Js -->
     <script src="assets/bundles/libscripts.bundle.js"></script>
     <!-- Plugin Js-->

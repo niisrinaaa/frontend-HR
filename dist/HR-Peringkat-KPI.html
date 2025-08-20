@@ -139,6 +139,36 @@
         }
       }
     </style>
+
+    <style>
+      /* Desktop: 4 kartu rata */
+      .employee-card {
+        width: 23%; /* hampir 4 kolom sejajar */
+      }
+
+      /* Tablet */
+      @media (max-width: 992px) {
+        .employee-card {
+          width: 40%; /* 2 kartu bisa masuk dalam layar */
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 576px) {
+        .employee-card {
+          width: 70%; /* 1 kartu besar tapi masih bisa di-slide ke samping */
+        }
+      }
+
+      /* Scroll horizontal smooth */
+      .best-employee-wrapper {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .best-employee-wrapper::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
   </head>
 
   <body data-mytask="theme-indigo">
@@ -391,57 +421,60 @@
 
                   <div class="d-flex align-items-center flex-wrap mt-3">
                     <!-- Card Informasi -->
-                    <div
-                      class="row g-3 mb-3 row-cols-2 row-cols-md-4 card-info justify-content-between w-100"
-                    >
-                      <div class="col">
-                        <div class="card bg-primary h-100">
-                          <div
-                            class="card-body text-white d-flex align-items-center"
-                          >
-                            <i class="icofont-star fs-3"></i>
-                            <div class="d-flex flex-column ms-3">
-                              <h6 class="mb-0">Skor Tertinggi</h6>
-                              <span class="text-white">95</span>
+                    <div class="container-fluid px-0">
+                      <div class="row g-3 mb-3">
+                        <div class="col-md-3 col-sm-6">
+                          <div class="card bg-primary h-100 w-100">
+                            <div
+                              class="card-body text-white d-flex align-items-center"
+                            >
+                              <i class="icofont-star fs-3"></i>
+                              <div class="d-flex flex-column ms-3">
+                                <h6 class="mb-0">Skor Tertinggi</h6>
+                                <span class="text-white">95</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="card bg-primary h-100">
-                          <div
-                            class="card-body text-white d-flex align-items-center"
-                          >
-                            <i class="icofont-ui-rating fs-3"></i>
-                            <div class="d-flex flex-column ms-3">
-                              <h6 class="mb-0">Skor Rata-rata</h6>
-                              <span class="text-white">84.25</span>
+
+                        <div class="col-md-3 col-sm-6">
+                          <div class="card bg-primary h-100 w-100">
+                            <div
+                              class="card-body text-white d-flex align-items-center"
+                            >
+                              <i class="icofont-ui-rating fs-3"></i>
+                              <div class="d-flex flex-column ms-3">
+                                <h6 class="mb-0">Skor Rata-rata</h6>
+                                <span class="text-white">84.25</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="card bg-primary h-100">
-                          <div
-                            class="card-body text-white d-flex align-items-center"
-                          >
-                            <i class="icofont-warning fs-3"></i>
-                            <div class="d-flex flex-column ms-3">
-                              <h6 class="mb-0">Skor Terendah</h6>
-                              <span class="text-white">65</span>
+
+                        <div class="col-md-3 col-sm-6">
+                          <div class="card bg-primary h-100 w-100">
+                            <div
+                              class="card-body text-white d-flex align-items-center"
+                            >
+                              <i class="icofont-warning fs-3"></i>
+                              <div class="d-flex flex-column ms-3">
+                                <h6 class="mb-0">Skor Terendah</h6>
+                                <span class="text-white">65</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="card bg-primary h-100">
-                          <div
-                            class="card-body text-white d-flex align-items-center"
-                          >
-                            <i class="icofont-users fs-3"></i>
-                            <div class="d-flex flex-column ms-3">
-                              <h6 class="mb-0">Total Karyawan</h6>
-                              <span class="text-white">4</span>
+
+                        <div class="col-md-3 col-sm-6">
+                          <div class="card bg-primary h-100 w-100">
+                            <div
+                              class="card-body text-white d-flex align-items-center"
+                            >
+                              <i class="icofont-users fs-3"></i>
+                              <div class="d-flex flex-column ms-3">
+                                <h6 class="mb-0">Total Karyawan</h6>
+                                <span class="text-white">4</span>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -449,164 +482,170 @@
                     </div>
 
                     <!-- Dropdowns -->
-                    <div class="filter-dropdowns d-flex flex-wrap gap-2 w-100">
-                      <div class="dropdown flex-fill">
-                        <button
-                          class="btn btn-primary dropdown-toggle w-100"
-                          type="button"
-                          id="filterDivisi"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                          aria-controls="filterDropdown"
-                        >
-                          Semua Divisi
-                        </button>
-                        <ul class="dropdown-menu w-100">
-                          <li>
-                            <a
-                              class="dropdown-item filter-option active"
-                              href="#"
-                              data-filter="divisi"
-                              data-value="all"
-                              >Semua Divisi</a
+                    <div class="container-fluid px-0">
+                      <div class="row g-3 mb-3">
+                        <div class="col-md-3 col-sm-6">
+                          <div class="dropdown w-100">
+                            <button
+                              class="btn btn-primary dropdown-toggle w-100"
+                              type="button"
+                              id="filterDivisi"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
                             >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="divisi"
-                              data-value="Pemasaran"
-                              >Pemasaran</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="divisi"
-                              data-value="Keuangan"
-                              >Keuangan</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
+                              Semua Divisi
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                              <li>
+                                <a
+                                  class="dropdown-item active"
+                                  href="#"
+                                  data-filter="divisi"
+                                  data-value="all"
+                                  >Semua Divisi</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="divisi"
+                                  data-value="Pemasaran"
+                                  >Pemasaran</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="divisi"
+                                  data-value="Keuangan"
+                                  >Keuangan</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
 
-                      <div class="dropdown flex-fill">
-                        <button
-                          class="btn btn-primary dropdown-toggle w-100"
-                          type="button"
-                          id="filterJabatan"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                          aria-controls="filterDropdown"
-                        >
-                          Semua Jabatan
-                        </button>
-                        <ul class="dropdown-menu w-100">
-                          <li>
-                            <a
-                              class="dropdown-item filter-option active"
-                              href="#"
-                              data-filter="jabatan"
-                              data-value="all"
-                              >Semua Jabatan</a
+                        <div class="col-md-3 col-sm-6">
+                          <div class="dropdown w-100">
+                            <button
+                              class="btn btn-primary dropdown-toggle w-100"
+                              type="button"
+                              id="filterJabatan"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
                             >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="jabatan"
-                              data-value="Kepala Divisi"
-                              >Kepala Divisi</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="jabatan"
-                              data-value="Karyawan"
-                              >Karyawan</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
+                              Semua Jabatan
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                              <li>
+                                <a
+                                  class="dropdown-item active"
+                                  href="#"
+                                  data-filter="jabatan"
+                                  data-value="all"
+                                  >Semua Jabatan</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="jabatan"
+                                  data-value="Kepala Divisi"
+                                  >Kepala Divisi</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="jabatan"
+                                  data-value="Karyawan"
+                                  >Karyawan</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
 
-                      <div class="dropdown flex-fill">
-                        <button
-                          class="btn btn-primary dropdown-toggle w-100"
-                          type="button"
-                          id="filterTahun"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                          aria-controls="filterDropdown"
-                        >
-                          Semua Tahun
-                        </button>
-                        <ul class="dropdown-menu w-100">
-                          <li>
-                            <a
-                              class="dropdown-item filter-option active"
-                              href="#"
-                              data-filter="tahun"
-                              data-value="all"
-                              >Semua Tahun</a
+                        <div class="col-md-3 col-sm-6">
+                          <div class="dropdown w-100">
+                            <button
+                              class="btn btn-primary dropdown-toggle w-100"
+                              type="button"
+                              id="filterTahun"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
                             >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="tahun"
-                              data-value="2024"
-                              >2024</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="tahun"
-                              data-value="2025"
-                              >2025</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
+                              Semua Tahun
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                              <li>
+                                <a
+                                  class="dropdown-item active"
+                                  href="#"
+                                  data-filter="tahun"
+                                  data-value="all"
+                                  >Semua Tahun</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="tahun"
+                                  data-value="2024"
+                                  >2024</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="tahun"
+                                  data-value="2025"
+                                  >2025</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
 
-                      <div class="dropdown flex-fill">
-                        <button
-                          class="btn btn-primary dropdown-toggle w-100"
-                          type="button"
-                          id="filterUrutan"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                          aria-controls="filterDropdown"
-                        >
-                          Urutkan Terbaik
-                        </button>
-                        <ul class="dropdown-menu w-100">
-                          <li>
-                            <a
-                              class="dropdown-item filter-option active"
-                              href="#"
-                              data-filter="urutan"
-                              data-value="desc"
-                              >Terbaik</a
+                        <div class="col-md-3 col-sm-6">
+                          <div class="dropdown w-100">
+                            <button
+                              class="btn btn-primary dropdown-toggle w-100"
+                              type="button"
+                              id="filterUrutan"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
                             >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item filter-option"
-                              href="#"
-                              data-filter="urutan"
-                              data-value="asc"
-                              >Terburuk</a
-                            >
-                          </li>
-                        </ul>
+                              Urutkan Terbaik
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                              <li>
+                                <a
+                                  class="dropdown-item active"
+                                  href="#"
+                                  data-filter="urutan"
+                                  data-value="desc"
+                                  >Terbaik</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-filter="urutan"
+                                  data-value="asc"
+                                  >Terburuk</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -618,154 +657,196 @@
               <div class="col-sm-12">
                 <div class="card mb-3">
                   <div class="card-body">
-                    <table
-                      id="kpiTable"
-                      class="table table-hover align-middle mb-0"
-                      style="width: 100%"
-                    >
-                      <thead>
-                        <tr>
-                          <th>No</th>
-                          <th>ID</th>
-                          <th>Nama</th>
-                          <th>Divisi</th>
-                          <th>Jabatan</th>
-                          <th>Status</th>
-                          <th>Skor KPI</th>
-                          <th>Periode</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>01</td>
-                          <td>001</td>
-                          <td>Bambang</td>
-                          <td>Pemasaran</td>
-                          <td>Karyawan</td>
-                          <td><span class="badge bg-success">Aktif</span></td>
-                          <td><span class="badge-score">92</span></td>
-                          <td>Agustus 2025</td>
-                          <td>
-                            <a
-                              href="HR-detail-kpi.html?id=001"
-                              class="btn btn-outline-secondary"
-                              title="Detail"
-                            >
-                              <i class="icofont-eye-alt"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>02</td>
-                          <td>002</td>
-                          <td>Siti</td>
-                          <td>Keuangan</td>
-                          <td>Kepala Divisi</td>
-                          <td><span class="badge bg-success">Aktif</span></td>
-                          <td><span class="badge-score">85</span></td>
-                          <td>Agustus 2025</td>
-                          <td>
-                            <a
-                              href="HR-detail-kpi.html?id=002"
-                              class="btn btn-outline-secondary"
-                              title="Detail"
-                            >
-                              <i class="icofont-eye-alt"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>03</td>
-                          <td>003</td>
-                          <td>Andi</td>
-                          <td>Pemasaran</td>
-                          <td>Karyawan</td>
-                          <td><span class="badge bg-success">Aktif</span></td>
-                          <td><span class="badge-score">65</span></td>
-                          <td>Agustus 2025</td>
-                          <td>
-                            <a
-                              href="HR-detail-kpi.html?id=003"
-                              class="btn btn-outline-secondary"
-                              title="Detail"
-                            >
-                              <i class="icofont-eye-alt"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>04</td>
-                          <td>004</td>
-                          <td>Dewi</td>
-                          <td>Keuangan</td>
-                          <td>Karyawan</td>
-                          <td><span class="badge bg-success">Aktif</span></td>
-                          <td><span class="badge-score">95</span></td>
-                          <td>Agustus 2024</td>
-                          <td>
-                            <a
-                              href="HR-detail-kpi.html?id=004"
-                              class="btn btn-outline-secondary"
-                              title="Detail"
-                            >
-                              <i class="icofont-eye-alt"></i>
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <!-- Bungkus tabel dengan table-responsive -->
+                    <div class="table-responsive">
+                      <table
+                        id="kpiTable"
+                        class="table table-hover table-striped align-middle mb-0"
+                        style="width: 100%"
+                      >
+                        <thead class="table-light">
+                          <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Divisi</th>
+                            <th>Jabatan</th>
+                            <th>Status</th>
+                            <th>Skor KPI</th>
+                            <th>Periode</th>
+                            <th style="width: 80px">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>01</td>
+                            <td>001</td>
+                            <td>Bambang</td>
+                            <td>Pemasaran</td>
+                            <td>Karyawan</td>
+                            <td><span class="badge bg-success">Aktif</span></td>
+                            <td><span class="badge-score">92</span></td>
+                            <td>Agustus 2025</td>
+                            <td>
+                              <a
+                                href="HR-detail-kpi.html?id=001"
+                                class="btn btn-outline-secondary btn-sm"
+                                title="Detail"
+                              >
+                                <i class="icofont-eye-alt"></i>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>02</td>
+                            <td>002</td>
+                            <td>Siti</td>
+                            <td>Keuangan</td>
+                            <td>Kepala Divisi</td>
+                            <td><span class="badge bg-success">Aktif</span></td>
+                            <td><span class="badge-score">85</span></td>
+                            <td>Agustus 2025</td>
+                            <td>
+                              <a
+                                href="HR-detail-kpi.html?id=002"
+                                class="btn btn-outline-secondary btn-sm"
+                                title="Detail"
+                              >
+                                <i class="icofont-eye-alt"></i>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>03</td>
+                            <td>003</td>
+                            <td>Andi</td>
+                            <td>Pemasaran</td>
+                            <td>Karyawan</td>
+                            <td><span class="badge bg-success">Aktif</span></td>
+                            <td><span class="badge-score">65</span></td>
+                            <td>Agustus 2025</td>
+                            <td>
+                              <a
+                                href="HR-detail-kpi.html?id=003"
+                                class="btn btn-outline-secondary btn-sm"
+                                title="Detail"
+                              >
+                                <i class="icofont-eye-alt"></i>
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>04</td>
+                            <td>004</td>
+                            <td>Dewi</td>
+                            <td>Keuangan</td>
+                            <td>Karyawan</td>
+                            <td><span class="badge bg-success">Aktif</span></td>
+                            <td><span class="badge-score">95</span></td>
+                            <td>Agustus 2024</td>
+                            <td>
+                              <a
+                                href="HR-detail-kpi.html?id=004"
+                                class="btn btn-outline-secondary btn-sm"
+                                title="Detail"
+                              >
+                                <i class="icofont-eye-alt"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- End table-responsive -->
                   </div>
                 </div>
               </div>
             </div>
+
             <!-- Row End -->
           </div>
           <!-- Karyawan Terbaik Section -->
-          <div class="row mt-4">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header bg-primary text-white">
-                  <h5 class="mb-0">Karyawan Terbaik</h5>
-                </div>
-                <div class="card-body">
+          <div class="container-xxl">
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card shadow-sm">
                   <div
-                    id="bestEmployeeCarousel"
-                    class="carousel slide"
-                    data-bs-ride="carousel"
+                    class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
                   >
-                    <div class="carousel-inner">
-                      <!-- Data akan diisi oleh JavaScript -->
-                      <div class="carousel-item active">
-                        <div class="row g-3">
-                          <!-- Item akan di-generate secara dinamis -->
+                    <h5 class="mb-0">🌟 Karyawan Terbaik</h5>
+                    <small class="text-light"
+                      >Geser untuk melihat lainnya →</small
+                    >
+                  </div>
+                  <div class="card-body">
+                    <div
+                      class="best-employee-wrapper d-flex flex-nowrap overflow-auto px-2"
+                    >
+                      <!-- Item -->
+                      <div class="employee-card flex-shrink-0 me-3">
+                        <div
+                          class="card h-100 text-center p-3 border-0 shadow-sm"
+                        >
+                          <img
+                            src="assets/images/profile_av.png"
+                            class="rounded-circle mx-auto mb-3"
+                            width="80"
+                            height="80"
+                            alt="Employee"
+                          />
+                          <h6 class="fw-bold mb-1">Dylan Hunter</h6>
+                          <small class="text-muted">UI/UX Designer</small>
+                        </div>
+                      </div>
+
+                      <div class="employee-card flex-shrink-0 me-3">
+                        <div
+                          class="card h-100 text-center p-3 border-0 shadow-sm"
+                        >
+                          <img
+                            src="assets/images/profile_av.png"
+                            class="rounded-circle mx-auto mb-3"
+                            width="80"
+                            height="80"
+                            alt="Employee"
+                          />
+                          <h6 class="fw-bold mb-1">Sarah Lee</h6>
+                          <small class="text-muted">Marketing</small>
+                        </div>
+                      </div>
+
+                      <div class="employee-card flex-shrink-0 me-3">
+                        <div
+                          class="card h-100 text-center p-3 border-0 shadow-sm"
+                        >
+                          <img
+                            src="assets/images/profile_av.png"
+                            class="rounded-circle mx-auto mb-3"
+                            width="80"
+                            height="80"
+                            alt="Employee"
+                          />
+                          <h6 class="fw-bold mb-1">Michael Scott</h6>
+                          <small class="text-muted">Manager</small>
+                        </div>
+                      </div>
+
+                      <div class="employee-card flex-shrink-0 me-3">
+                        <div
+                          class="card h-100 text-center p-3 border-0 shadow-sm"
+                        >
+                          <img
+                            src="assets/images/profile_av.png"
+                            class="rounded-circle mx-auto mb-3"
+                            width="80"
+                            height="80"
+                            alt="Employee"
+                          />
+                          <h6 class="fw-bold mb-1">Olivia Brown</h6>
+                          <small class="text-muted">Finance</small>
                         </div>
                       </div>
                     </div>
-                    <button
-                      class="carousel-control-prev"
-                      type="button"
-                      data-bs-target="#bestEmployeeCarousel"
-                      data-bs-slide="prev"
-                    >
-                      <span
-                        class="carousel-control-prev-icon bg-dark rounded-circle"
-                        aria-hidden="true"
-                      ></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button
-                      class="carousel-control-next"
-                      type="button"
-                      data-bs-target="#bestEmployeeCarousel"
-                      data-bs-slide="next"
-                    >
-                      <span
-                        class="carousel-control-next-icon bg-dark rounded-circle"
-                        aria-hidden="true"
-                      ></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
                   </div>
                 </div>
               </div>

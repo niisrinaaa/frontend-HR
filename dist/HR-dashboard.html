@@ -154,18 +154,19 @@
         font-size: 0.7rem;
       }
 
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .card {
-          margin-bottom: 10px;
+      @media (max-width: 576px) {
+        .card-header h6 {
+          font-size: 0.8rem;
         }
-
-        .card-header {
-          padding: 8px 12px;
+        .stat-card img {
+          width: 30px;
+          height: 30px;
         }
-
-        .card-body {
-          padding: 12px;
+        .stat-card h4 {
+          font-size: 1rem;
+        }
+        .employee-item {
+          padding: 6px 8px;
         }
       }
     </style>
@@ -414,7 +415,7 @@
         <div class="container-fluid px-2">
           <div class="row g-2">
             <!-- KPI Divisi Chart -->
-            <div class="col-md-8">
+            <div class="col-12 col-md-8">
               <div class="card h-100">
                 <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold">KPI Divisi</h6>
@@ -429,7 +430,7 @@
             </div>
 
             <!-- Karyawan Terbaik -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
               <div class="card h-100 employee-list-card">
                 <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold">Karyawan Terbaik</h6>
@@ -486,30 +487,13 @@
                         <i class="icofont-clock-time"></i> 8.00
                       </div>
                     </div>
-
-                    <div class="employee-item">
-                      <div class="d-flex align-items-center flex-fill">
-                        <img
-                          class="avatar rounded-circle img-thumbnail"
-                          src="assets/images/lg/avatar9.jpg"
-                          alt="profile"
-                        />
-                        <div class="employee-info">
-                          <h6 class="fw-bold mb-0 small-14">Peter Piperg</h6>
-                          <span class="text-muted">Web Design</span>
-                        </div>
-                      </div>
-                      <div class="employee-time">
-                        <i class="icofont-clock-time"></i> 9.00
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Stat Cards -->
-            <div class="col-md-2">
+            <div class="col-6 col-md-2">
               <div class="card h-100">
                 <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold text-center">Karyawan</h6>
@@ -522,7 +506,7 @@
               </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-6 col-md-2">
               <div class="card h-100">
                 <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold text-center">Divisi</h6>
@@ -536,7 +520,7 @@
             </div>
 
             <!-- Gender Chart -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
               <div class="card h-10">
                 <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold text-center">Gender Karyawan</h6>
@@ -548,7 +532,7 @@
             </div>
 
             <!-- Karyawan Bottom -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4">
               <div class="card h-100 employee-list-card">
                 <div class="card-header py-2 bg-transparent border-bottom-0">
                   <h6 class="mb-0 fw-bold">Perlu Perhatian</h6>
@@ -610,7 +594,7 @@
               </div>
             </div>
 
-            <!-- Jumlah Karyawan Divisi -->
+            <!-- Distribusi Karyawan -->
             <div class="col-12">
               <div class="card">
                 <div class="card-header py-2 bg-transparent border-bottom-0">

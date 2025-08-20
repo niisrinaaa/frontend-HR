@@ -145,6 +145,30 @@
         max-height: 500px;
         overflow-y: auto;
       }
+
+      @media (max-width: 576px) {
+        .stat-card {
+          padding: 10px;
+        }
+        .stat-card .icon {
+          font-size: 1.5rem;
+          margin-bottom: 5px;
+        }
+        .stat-card .title {
+          font-size: 0.75rem;
+        }
+        .stat-card .value {
+          font-size: 1rem;
+        }
+
+        .card-body h4 {
+          font-size: 1.1rem;
+        }
+        .card-body span {
+          display: block;
+          margin-bottom: 5px;
+        }
+      }
     </style>
   </head>
 
@@ -395,11 +419,12 @@
                 <div class="card">
                   <div class="card-body">
                     <div
-                      class="d-flex align-items-center justify-content-between"
+                      class="d-flex flex-wrap justify-content-between align-items-start"
                     >
-                      <div>
+                      <!-- Info Karyawan -->
+                      <div class="mb-2">
                         <h4 class="fw-bold mb-0">Detail KPI Karyawan</h4>
-                        <div class="d-flex align-items-center mt-2">
+                        <div class="d-flex flex-wrap align-items-center mt-2">
                           <span class="me-3"
                             ><strong>Nama:</strong> John Doe</span
                           >
@@ -410,7 +435,9 @@
                           <span><strong>Jabatan:</strong> Staff</span>
                         </div>
                       </div>
-                      <div class="dropdown">
+
+                      <!-- Dropdown Periode -->
+                      <div class="dropdown mt-2 mt-md-0">
                         <button
                           class="btn btn-primary dropdown-toggle"
                           type="button"
@@ -439,8 +466,8 @@
             </div>
 
             <!-- Statistik Ringkasan KPI -->
-            <div class="row mb-4">
-              <div class="col-md-3">
+            <div class="row mb-4 text-center">
+              <div class="col-6 col-sm-4 col-md-3">
                 <div class="stat-card bg-primary">
                   <div class="icon"><i class="icofont-checked"></i></div>
                   <div class="title">Total Nilai KPI</div>
@@ -449,7 +476,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-6 col-sm-4 col-md-3">
                 <div class="stat-card bg-primary">
                   <div class="icon"><i class="icofont-trophy"></i></div>
                   <div class="title">Target</div>
@@ -458,7 +485,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-6 col-sm-4 col-md-3">
                 <div class="stat-card bg-primary">
                   <div class="icon"><i class="icofont-chart-line"></i></div>
                   <div class="title">Performa</div>
@@ -467,7 +494,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-6 col-sm-4 col-md-3">
                 <div class="stat-card bg-primary">
                   <div class="icon"><i class="icofont-medal"></i></div>
                   <div class="title">Peringkat</div>
