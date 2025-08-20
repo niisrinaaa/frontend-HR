@@ -168,6 +168,17 @@
       .best-employee-wrapper::-webkit-scrollbar {
         display: none;
       }
+
+      /* Tabel bisa discroll di layar kecil */
+      .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Supaya kolom tidak pecah ke bawah */
+      #kpiTable {
+        white-space: nowrap;
+      }
     </style>
   </head>
 
@@ -876,7 +887,9 @@
 
         // Inisialisasi DataTable
         var table = $("#kpiTable").DataTable({
-          responsive: true,
+          responsive: false, // jangan collapse row
+          autoWidth: false,
+          scrollX: true, // aktifkan horizontal scroll
           columnDefs: [
             { targets: [0, 1, 5, 8], orderable: false },
             { targets: [6], type: "num" },
