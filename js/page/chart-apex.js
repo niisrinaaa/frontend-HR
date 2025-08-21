@@ -312,7 +312,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     var options = {
         chart: {
-            height: 300,
+            height: 200,
             type: 'area',
             stacked: true,
             toolbar: {
@@ -332,19 +332,19 @@ $(document).ready(function() {
 
         series: [
             {
-                name: 'South',
+                name: 'Marketing',
                 data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
                     min: 10,
                     max: 60
                 })
             },{
-                name: 'North',
+                name: 'IT',
                 data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
                     min: 10,
                     max: 20
                 })
             },{
-                name: 'Central',
+                name: 'Finance',
                 data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
                     min: 10,
                     max: 15
