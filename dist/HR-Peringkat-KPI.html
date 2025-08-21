@@ -917,7 +917,7 @@
         }
 
         // Event listener untuk filter dropdown
-        $(".dropdown-menu").on("click", ".filter-option", function (e) {
+        $(".dropdown-menu").on("click", ".dropdown-item", function (e) {
           e.preventDefault();
           e.stopPropagation();
 
@@ -934,7 +934,7 @@
           // Update class active
           $(this)
             .closest(".dropdown-menu")
-            .find(".filter-option")
+            .find(".dropdown-item")
             .removeClass("active");
           $(this).addClass("active");
 
