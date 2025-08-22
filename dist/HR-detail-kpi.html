@@ -441,22 +441,32 @@
                         <button
                           class="btn btn-primary dropdown-toggle"
                           type="button"
-                          id="periodeDropdown"
+                          id="tahunDropdown"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          Periode: Q1 2023
+                          Tahun: 2023
                         </button>
                         <ul
                           class="dropdown-menu"
-                          aria-labelledby="periodeDropdown"
+                          aria-labelledby="tahunDropdown"
                         >
+                          <li><h6 class="dropdown-header">Pilih Tahun</h6></li>
                           <li>
-                            <h6 class="dropdown-header">Pilih Periode</h6>
+                            <a class="dropdown-item" href="#" data-tahun="2023"
+                              >2023</a
+                            >
                           </li>
-                          <li><a class="dropdown-item" href="#">Q1 2023</a></li>
-                          <li><a class="dropdown-item" href="#">Q4 2022</a></li>
-                          <li><a class="dropdown-item" href="#">Q3 2022</a></li>
+                          <li>
+                            <a class="dropdown-item" href="#" data-tahun="2022"
+                              >2022</a
+                            >
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#" data-tahun="2021"
+                              >2021</a
+                            >
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -721,6 +731,7 @@
                         <thead>
                           <tr>
                             <th>Bulan</th>
+                            <th>Tahun</th>
                             <th>Produktivitas</th>
                             <th>Kualitas Kerja</th>
                             <th>Kedisiplinan</th>
@@ -733,6 +744,8 @@
                         <tbody>
                           <tr>
                             <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
                             <td class="monthly-score">82</td>
                             <td class="monthly-score">90</td>
@@ -744,73 +757,85 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Februari</td>
-                            <td class="monthly-score">86</td>
-                            <td class="monthly-score">83</td>
-                            <td class="monthly-score">91</td>
-                            <td class="monthly-score">79</td>
-                            <td class="monthly-score">84</td>
-                            <td class="monthly-total">83.2</td>
-                            <td>
-                              <span class="kpi-badge badge-good">Baik</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Maret</td>
-                            <td class="monthly-score">87</td>
-                            <td class="monthly-score">84</td>
-                            <td class="monthly-score">92</td>
-                            <td class="monthly-score">80</td>
-                            <td class="monthly-score">83</td>
-                            <td class="monthly-total">84.3</td>
-                            <td>
-                              <span class="kpi-badge badge-good">Baik</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>April</td>
-                            <td class="monthly-score">88</td>
+                            <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
-                            <td class="monthly-score">93</td>
-                            <td class="monthly-score">81</td>
                             <td class="monthly-score">82</td>
-                            <td class="monthly-total">85.1</td>
-                            <td>
-                              <span class="kpi-badge badge-good">Baik</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Mei</td>
-                            <td class="monthly-score">89</td>
-                            <td class="monthly-score">86</td>
-                            <td class="monthly-score">94</td>
-                            <td class="monthly-score">82</td>
-                            <td class="monthly-score">81</td>
-                            <td class="monthly-total">86.0</td>
-                            <td>
-                              <span class="kpi-badge badge-good">Baik</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Juni</td>
                             <td class="monthly-score">90</td>
-                            <td class="monthly-score">87</td>
-                            <td class="monthly-score">95</td>
-                            <td class="monthly-score">83</td>
-                            <td class="monthly-score">80</td>
-                            <td class="monthly-total">86.9</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
                             <td>
                               <span class="kpi-badge badge-good">Baik</span>
                             </td>
                           </tr>
                           <tr>
-                            <td>Juli</td>
-                            <td class="monthly-score">89</td>
-                            <td class="monthly-score">86</td>
-                            <td class="monthly-score">94</td>
-                            <td class="monthly-score">84</td>
-                            <td class="monthly-score">81</td>
-                            <td class="monthly-total">86.7</td>
+                            <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Januari</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
                             <td>
                               <span class="kpi-badge badge-good">Baik</span>
                             </td>
@@ -819,6 +844,8 @@
                         <tfoot>
                           <tr class="table-active">
                             <th>Rata-rata</th>
+                            <th></th>
+                            <!-- Tahun -->
                             <th>88.8</th>
                             <th>85.8</th>
                             <th>92.0</th>
@@ -928,6 +955,44 @@
             // Ekspor ke file Excel
             XLSX.writeFile(workbook, "Rekapan_KPI_Bulanan.xlsx");
           });
+      });
+
+      // helper: set tahun di tombol + isi kolom tahun
+      function setTahun(tahun) {
+        const btn = document.getElementById("tahunDropdown");
+        btn.textContent = "Tahun: " + tahun;
+
+        // isi semua sel tahun
+        document.querySelectorAll("#monthlyKpiTable tbody tr").forEach((tr) => {
+          // kalau belum ada sel tahun (antisipasi), sisipkan setelah kolom Bulan
+          let tahunCell = tr.querySelector(".tahun-cell");
+          if (!tahunCell) {
+            const tds = tr.querySelectorAll("td");
+            tahunCell = document.createElement("td");
+            tahunCell.className = "tahun-cell";
+            tr.insertBefore(tahunCell, tds[1]); // posisikan jadi kolom ke-2
+          }
+          tahunCell.textContent = tahun;
+        });
+      }
+
+      // klik item dropdown tahun
+      document
+        .querySelectorAll("#tahunDropdown + .dropdown-menu .dropdown-item")
+        .forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            setTahun(this.dataset.tahun);
+          });
+        });
+
+      // set tahun awal dari teks tombol (mis. "Tahun: 2023")
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnText = document.getElementById("tahunDropdown").textContent;
+        const initialYear = (btnText.match(/\d{4}/) || [
+          new Date().getFullYear(),
+        ])[0];
+        setTahun(initialYear);
       });
     </script>
   </body>

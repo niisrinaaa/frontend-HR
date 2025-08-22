@@ -11,10 +11,14 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
+    <!-- plugin css file  -->
     <link
       rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css"
+      href="assets/plugin/datatables/responsive.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/plugin/datatables/dataTables.bootstrap5.min.css"
     />
     <style>
       /* Animasi untuk dropdown */
@@ -178,6 +182,16 @@
       /* Supaya kolom tidak pecah ke bawah */
       #kpiTable {
         white-space: nowrap;
+      }
+
+      .form-select.form-select-sm {
+        height: 28px; /* default ~31px */
+        padding: 2px 8px;
+        font-size: 0.8rem;
+      }
+      .form-label.small {
+        font-size: 0.75rem;
+        margin-bottom: 2px; /* jarak label ke input makin rapat */
       }
     </style>
   </head>
@@ -493,169 +507,76 @@
                     </div>
 
                     <!-- Dropdowns -->
-                    <div class="container-fluid px-0">
-                      <div class="row g-3 mb-3">
-                        <div class="col-md-3 col-sm-6">
-                          <div class="dropdown w-100">
-                            <button
-                              class="btn btn-primary dropdown-toggle w-100"
-                              type="button"
-                              id="filterDivisi"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              Semua Divisi
-                            </button>
-                            <ul class="dropdown-menu w-100">
-                              <li>
-                                <a
-                                  class="dropdown-item active"
-                                  href="#"
-                                  data-filter="divisi"
-                                  data-value="all"
-                                  >Semua Divisi</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="divisi"
-                                  data-value="Pemasaran"
-                                  >Pemasaran</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="divisi"
-                                  data-value="Keuangan"
-                                  >Keuangan</a
-                                >
-                              </li>
-                            </ul>
-                          </div>
+                    <div class="container-xxl mt-2">
+                      <div
+                        class="card shadow-sm w-100"
+                        style="max-height: 150px"
+                      >
+                        <div class="card-header bg-primary text-white py-2">
+                          <h5 class="mb-0">Filter Data</h5>
                         </div>
+                        <div class="card-body p-2">
+                          <form class="row g-2">
+                            <!-- Bulan -->
+                            <div class="col-md-3 col-sm-6">
+                              <label class="form-label small mb-1">Bulan</label>
+                              <select
+                                id="filterBulan"
+                                class="form-select form-select-sm"
+                              >
+                                <option value="all">Semua</option>
+                                <option value="Januari">Januari</option>
+                                <option value="Februari">Februari</option>
+                                <option value="Maret">Maret</option>
+                              </select>
+                            </div>
 
-                        <div class="col-md-3 col-sm-6">
-                          <div class="dropdown w-100">
-                            <button
-                              class="btn btn-primary dropdown-toggle w-100"
-                              type="button"
-                              id="filterJabatan"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              Semua Jabatan
-                            </button>
-                            <ul class="dropdown-menu w-100">
-                              <li>
-                                <a
-                                  class="dropdown-item active"
-                                  href="#"
-                                  data-filter="jabatan"
-                                  data-value="all"
-                                  >Semua Jabatan</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="jabatan"
-                                  data-value="Kepala Divisi"
-                                  >Kepala Divisi</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="jabatan"
-                                  data-value="Karyawan"
-                                  >Karyawan</a
-                                >
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                            <!-- Tahun -->
+                            <div class="col-md-3 col-sm-6">
+                              <label class="form-label small mb-1">Tahun</label>
+                              <select
+                                id="filterTahun"
+                                class="form-select form-select-sm"
+                              >
+                                <option value="all">Semua</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                              </select>
+                            </div>
 
-                        <div class="col-md-3 col-sm-6">
-                          <div class="dropdown w-100">
-                            <button
-                              class="btn btn-primary dropdown-toggle w-100"
-                              type="button"
-                              id="filterTahun"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              Semua Tahun
-                            </button>
-                            <ul class="dropdown-menu w-100">
-                              <li>
-                                <a
-                                  class="dropdown-item active"
-                                  href="#"
-                                  data-filter="tahun"
-                                  data-value="all"
-                                  >Semua Tahun</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="tahun"
-                                  data-value="2024"
-                                  >2024</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="tahun"
-                                  data-value="2025"
-                                  >2025</a
-                                >
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                            <!-- Divisi -->
+                            <div class="col-md-3 col-sm-6">
+                              <label class="form-label small mb-1"
+                                >Divisi</label
+                              >
+                              <select
+                                id="filterDivisi"
+                                class="form-select form-select-sm"
+                              >
+                                <option value="all">Semua</option>
+                                <option value="IT">IT</option>
+                                <option value="HRD">HRD</option>
+                                <option value="Finance">Finance</option>
+                              </select>
+                            </div>
 
-                        <div class="col-md-3 col-sm-6">
-                          <div class="dropdown w-100">
-                            <button
-                              class="btn btn-primary dropdown-toggle w-100"
-                              type="button"
-                              id="filterUrutan"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              Urutkan Terbaik
-                            </button>
-                            <ul class="dropdown-menu w-100">
-                              <li>
-                                <a
-                                  class="dropdown-item active"
-                                  href="#"
-                                  data-filter="urutan"
-                                  data-value="desc"
-                                  >Terbaik</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-filter="urutan"
-                                  data-value="asc"
-                                  >Terburuk</a
-                                >
-                              </li>
-                            </ul>
-                          </div>
+                            <!-- Jabatan -->
+                            <div class="col-md-3 col-sm-6">
+                              <label class="form-label small mb-1"
+                                >Jabatan</label
+                              >
+                              <select
+                                id="filterJabatan"
+                                class="form-select form-select-sm"
+                              >
+                                <option value="all">Semua</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Staff">Staff</option>
+                                <option value="Intern">Intern</option>
+                              </select>
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -867,34 +788,21 @@
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/bundles/libscripts.bundle.js"></script>
+    <script src="assets/bundles/dataTables.bundle.js"></script>
     <script src="../js/template.js"></script>
     <script src="../js/page/hr.js"></script>
-    <!-- DataTables JS -->
-    <script
-      type="text/javascript"
-      charset="utf8"
-      src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
-    ></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
       $(document).ready(function () {
-        // Toggle sidebar di mobile
-        $("#sidebarToggle").click(function () {
-          $(".sidebar").toggleClass("show");
-        });
-
-        // Inisialisasi DataTable
         var table = $("#kpiTable").DataTable({
-          responsive: false, // jangan collapse row
+          responsive: false,
           autoWidth: false,
-          scrollX: true, // aktifkan horizontal scroll
+          scrollX: true,
           columnDefs: [
             { targets: [0, 1, 5, 8], orderable: false },
             { targets: [6], type: "num" },
           ],
-          order: [[6, "desc"]], // Default sorting by KPI score descending
+          order: [[6, "desc"]],
           language: {
             search: "Cari:",
             paginate: {
@@ -911,81 +819,51 @@
           },
         });
 
-        // Fungsi untuk mengupdate teks dropdown
-        function updateDropdownText(dropdownId, text) {
-          $("#" + dropdownId).text(text);
-        }
+        // Fungsi filter
+        function applyFilters() {
+          var bulan = $("#filterBulan").val();
+          var tahun = $("#filterTahun").val();
+          var divisi = $("#filterDivisi").val();
+          var jabatan = $("#filterJabatan").val();
 
-        // Event listener untuk filter dropdown
-        $(".dropdown-menu").on("click", ".dropdown-item", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          var filterType = $(this).data("filter");
-          var value = $(this).data("value");
-          var text = $(this).text();
-
-          // Update teks dropdown
-          updateDropdownText(
-            "filter" + filterType.charAt(0).toUpperCase() + filterType.slice(1),
-            text
-          );
-
-          // Update class active
-          $(this)
-            .closest(".dropdown-menu")
-            .find(".dropdown-item")
-            .removeClass("active");
-          $(this).addClass("active");
-
-          // Terapkan filter
-          applyFilters(filterType, value);
-        });
-
-        // Fungsi untuk menerapkan filter
-        function applyFilters(filterType, value) {
-          switch (filterType) {
-            case "divisi":
-              if (value !== "all") {
-                table
-                  .column(3)
-                  .search("^" + value + "$", true, false)
-                  .draw();
-              } else {
-                table.column(3).search("").draw();
-              }
-              break;
-
-            case "jabatan":
-              if (value !== "all") {
-                table
-                  .column(4)
-                  .search("^" + value + "$", true, false)
-                  .draw();
-              } else {
-                table.column(4).search("").draw();
-              }
-              break;
-
-            case "tahun":
-              if (value !== "all") {
-                table.column(7).search(value).draw();
-              } else {
-                table.column(7).search("").draw();
-              }
-              break;
-
-            case "urutan":
-              if (value === "desc") {
-                table.order([6, "desc"]).draw();
-              } else {
-                table.order([6, "asc"]).draw();
-              }
-              break;
+          // Contoh: asumsikan index kolom DataTable
+          // bulan = col 2, tahun = col 7, divisi = col 3, jabatan = col 4
+          if (bulan !== "all") {
+            table.column(2).search("^" + bulan + "$", true, false);
+          } else {
+            table.column(2).search("");
           }
+
+          if (tahun !== "all") {
+            table.column(7).search("^" + tahun + "$", true, false);
+          } else {
+            table.column(7).search("");
+          }
+
+          if (divisi !== "all") {
+            table.column(3).search("^" + divisi + "$", true, false);
+          } else {
+            table.column(3).search("");
+          }
+
+          if (jabatan !== "all") {
+            table.column(4).search("^" + jabatan + "$", true, false);
+          } else {
+            table.column(4).search("");
+          }
+
+          table.draw();
         }
 
-        // Fungsi pencarian
+        // Event listener untuk setiap select
+        $("#filterBulan, #filterTahun, #filterDivisi, #filterJabatan").on(
+          "change",
+          function () {
+            applyFilters();
+          }
+        );
+
+        // Pencarian global bawaan
         $('input[type="search"]').keyup(function () {
           table.search($(this).val()).draw();
         });
