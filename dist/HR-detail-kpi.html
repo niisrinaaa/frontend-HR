@@ -169,6 +169,8 @@
           margin-bottom: 5px;
         }
       }
+
+      
     </style>
   </head>
 
@@ -437,34 +439,91 @@
                       </div>
 
                       <!-- Dropdown Periode -->
-                      <div class="dropdown mt-2 mt-md-0">
+                      <div class="dropdown mt-2 mb-3">
                         <button
                           class="btn btn-primary dropdown-toggle"
                           type="button"
-                          id="tahunDropdown"
+                          id="bulanDropdown"
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          Tahun: 2023
+                          Bulan: Januari
                         </button>
                         <ul
                           class="dropdown-menu"
-                          aria-labelledby="tahunDropdown"
+                          aria-labelledby="bulanDropdown"
                         >
-                          <li><h6 class="dropdown-header">Pilih Tahun</h6></li>
+                          <li><h6 class="dropdown-header">Pilih Bulan</h6></li>
                           <li>
-                            <a class="dropdown-item" href="#" data-tahun="2023"
-                              >2023</a
+                            <a
+                              class="dropdown-item"
+                              href="#"
+                              data-bulan="Januari"
+                              >Januari</a
                             >
                           </li>
                           <li>
-                            <a class="dropdown-item" href="#" data-tahun="2022"
-                              >2022</a
+                            <a
+                              class="dropdown-item"
+                              href="#"
+                              data-bulan="Februari"
+                              >Februari</a
                             >
                           </li>
                           <li>
-                            <a class="dropdown-item" href="#" data-tahun="2021"
-                              >2021</a
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Maret</a
+                            >
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >April</a
+                            >
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Mei</a
+                            >
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Juni</a
+                            >
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Juli</a
+                            >
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Agustus</a
+                            >
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >September</a
+                            >
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Oktober</a
+                            >
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >November</a
+                            >
+                          </li>
+
+                          <li>
+                            <a class="dropdown-item" href="#" data-bulan="Maret"
+                              >Desember</a
                             >
                           </li>
                         </ul>
@@ -510,24 +569,6 @@
                   <div class="title">Peringkat</div>
                   <div class="value">
                     12 <small class="fs-6">(Dari 50 Karyawan)</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Grafik Perkembangan KPI -->
-            <div class="row mb-4">
-              <div class="col-12">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center"
-                  >
-                    <h5 class="card-title">Perkembangan Nilai KPI</h5>
-                  </div>
-                  <div class="card-body">
-                    <div class="chart-container">
-                      <canvas id="kpiTrendChart"></canvas>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -710,6 +751,49 @@
               </div>
             </div>
 
+            <!-- Dropdown Tahun -->
+            <div class="dropdown mt-2 mb-3">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="tahunDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Tahun: 2023
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="tahunDropdown">
+                <li><h6 class="dropdown-header">Pilih Tahun</h6></li>
+                <li>
+                  <a class="dropdown-item" href="#" data-tahun="2023">2023</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" data-tahun="2022">2022</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" data-tahun="2021">2021</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Grafik Perkembangan KPI -->
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    class="card-header d-flex justify-content-between align-items-center"
+                  >
+                    <h5 class="card-title">Perkembangan Nilai KPI</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-container">
+                      <canvas id="kpiTrendChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Rekapan KPI Bulanan -->
             <div class="row mb-4">
               <div class="col-12">
@@ -757,7 +841,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Januari</td>
+                            <td>Febuari</td>
                             <td class="tahun-cell"></td>
                             <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
@@ -771,7 +855,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Januari</td>
+                            <td>Maret</td>
                             <td class="tahun-cell"></td>
                             <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
@@ -785,7 +869,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Januari</td>
+                            <td>April</td>
                             <td class="tahun-cell"></td>
                             <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
@@ -799,7 +883,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Januari</td>
+                            <td>Mei</td>
                             <td class="tahun-cell"></td>
                             <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
@@ -813,7 +897,7 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Januari</td>
+                            <td>Juni</td>
                             <td class="tahun-cell"></td>
                             <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
@@ -827,7 +911,77 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Januari</td>
+                            <td>Juli</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Agustus</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>September</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Oktober</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>November</td>
+                            <td class="tahun-cell"></td>
+                            <!-- << kolom Tahun baru -->
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-score">82</td>
+                            <td class="monthly-score">90</td>
+                            <td class="monthly-score">78</td>
+                            <td class="monthly-score">85</td>
+                            <td class="monthly-total">82.0</td>
+                            <td>
+                              <span class="kpi-badge badge-good">Baik</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Desember</td>
                             <td class="tahun-cell"></td>
                             <!-- << kolom Tahun baru -->
                             <td class="monthly-score">85</td>
@@ -977,6 +1131,49 @@
       }
 
       // klik item dropdown tahun
+      // === Dropdown Bulan ===
+      function setBulan(bulan) {
+        const btn = document.getElementById("bulanDropdown");
+        btn.textContent = "Bulan: " + bulan;
+
+        // TODO: update isi card KPI & indikator KPI sesuai bulan
+        // misalnya ambil data dari array/data JSON
+      }
+
+      document
+        .querySelectorAll("#bulanDropdown + .dropdown-menu .dropdown-item")
+        .forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            setBulan(this.dataset.bulan);
+          });
+        });
+
+      // set default bulan = Januari
+      document.addEventListener("DOMContentLoaded", function () {
+        setBulan("Januari");
+      });
+
+      // === Dropdown Tahun ===
+      function setTahun(tahun) {
+        const btn = document.getElementById("tahunDropdown");
+        btn.textContent = "Tahun: " + tahun;
+
+        // update kolom Tahun di tabel
+        document.querySelectorAll("#monthlyKpiTable tbody tr").forEach((tr) => {
+          let tahunCell = tr.querySelector(".tahun-cell");
+          if (!tahunCell) {
+            const tds = tr.querySelectorAll("td");
+            tahunCell = document.createElement("td");
+            tahunCell.className = "tahun-cell";
+            tr.insertBefore(tahunCell, tds[1]);
+          }
+          tahunCell.textContent = tahun;
+        });
+
+        // TODO: update chart sesuai tahun (bisa pakai dataset berbeda per tahun)
+      }
+
       document
         .querySelectorAll("#tahunDropdown + .dropdown-menu .dropdown-item")
         .forEach((item) => {
@@ -986,7 +1183,7 @@
           });
         });
 
-      // set tahun awal dari teks tombol (mis. "Tahun: 2023")
+      // default tahun = dari button
       document.addEventListener("DOMContentLoaded", function () {
         const btnText = document.getElementById("tahunDropdown").textContent;
         const initialYear = (btnText.match(/\d{4}/) || [

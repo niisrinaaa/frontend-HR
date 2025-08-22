@@ -9,13 +9,19 @@
     />
     <title>Data Karyawan - HRIS</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  
+
     <!-- project css file  -->
     <link rel="stylesheet" href="assets/css/my-task.style.min.css" />
 
     <!-- plugin css file  -->
-    <link rel="stylesheet" href="assets/plugin/datatables/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="assets/plugin/datatables/dataTables.bootstrap5.min.css">
+    <link
+      rel="stylesheet"
+      href="assets/plugin/datatables/responsive.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/plugin/datatables/dataTables.bootstrap5.min.css"
+    />
     <style>
       /* Animasi untuk dropdown */
       .sub-menu.collapsing {
@@ -51,10 +57,11 @@
         transition: transform 0.3s ease;
       }
 
-      /* Improved styling for employee page */
+      /* ---------------------- CARD & MODAL STYLING ---------------------- */
       .card {
         border-radius: 10px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        margin-bottom: 10px; /* dipindah ke sini, biar gak dobel di bawah */
       }
 
       .card-header {
@@ -62,6 +69,31 @@
         border-bottom: 1px solid #eaeaea;
         padding: 1rem 1.5rem;
       }
+
+      .card .card-body {
+        padding: 1rem; /* default, nanti diubah di media query */
+      }
+
+      .modal-header {
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      .modal-footer {
+        border-top: 1px solid #eaeaea;
+      }
+
+      .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-control,
+      .form-select {
+        border-radius: 5px;
+        padding: 0.5rem 0.75rem;
+      }
+
+      /* ---------------------- TABLE STYLING ---------------------- */
 
       .table th {
         background-color: #f8f9fa;
@@ -94,83 +126,12 @@
         color: white;
       }
 
-      /* Modal styling */
-      .modal-header {
-        border-bottom: 1px solid #eaeaea;
-      }
-
-      .modal-footer {
-        border-top: 1px solid #eaeaea;
-      }
-
-      .form-label {
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-      }
-
-      .form-control,
-      .form-select {
-        border-radius: 5px;
-        padding: 0.5rem 0.75rem;
-      }
-
-      /* Detail karyawan styling */
-      .detail-section {
-        margin-bottom: 1.5rem;
-      }
-
-      .detail-section h6 {
-        color: #4e73df;
-        border-bottom: 1px solid #eaeaea;
-        padding-bottom: 0.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .detail-item {
-        display: flex;
-        margin-bottom: 0.75rem;
-      }
-
-      .detail-label {
-        flex: 0 0 140px;
-        font-weight: 500;
-        color: #6c757d;
-      }
-
-      .detail-value {
-        flex: 1;
-      }
-
-      /* Agar tabel tetap tabel di mobile + bisa di-slide */
-      .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* smooth swipe di mobile */
-      }
-
-      #myProjectTable {
-        white-space: nowrap; /* biar kolom tidak pecah ke bawah */
-      }
-      /* Action buttons styling */
-      .action-buttons {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-      }
-
-      .action-buttons .btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.875rem;
-      }
-
-      /* ---------------------- TABLE STYLING ---------------------- */
-
       /* Wrapper agar tabel bisa discroll di layar kecil */
       .table-responsive {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* smooth swipe di mobile */
+        -webkit-overflow-scrolling: touch;
       }
 
-      /* Tabel utama */
       #myProjectTable {
         width: 100%;
         border-collapse: collapse;
@@ -178,7 +139,6 @@
         font-size: 0.95rem;
       }
 
-      /* Header tabel */
       #myProjectTable thead th {
         background-color: #f8f9fa;
         font-weight: 600;
@@ -189,24 +149,20 @@
         vertical-align: middle;
       }
 
-      /* Isi tabel */
       #myProjectTable tbody td {
         padding: 0.75rem;
         vertical-align: middle;
         border-bottom: 1px solid #e9ecef;
       }
 
-      /* Zebra effect untuk baris */
       #myProjectTable tbody tr:nth-child(even) {
         background-color: #fdfdfd;
       }
 
-      /* Hover effect */
       #myProjectTable tbody tr:hover {
         background-color: #f1f3f9;
       }
 
-      /* Action buttons (detail, edit, hapus) */
       .action-buttons {
         display: flex;
         gap: 0.4rem;
@@ -219,7 +175,59 @@
         font-size: 0.8rem;
       }
 
-      /* ---------------------- END TABLE STYLING ---------------------- */
+      /* ---------------------- RESPONSIVE ---------------------- */
+      @media (max-width: 992px) {
+        .deskripsi-cell {
+          max-width: 200px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .table th,
+        .table td {
+          padding: 8px 10px;
+          font-size: 0.875rem;
+        }
+        .deskripsi-cell {
+          max-width: 150px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        #myProjectTable th,
+        #myProjectTable td {
+          font-size: 11px;
+          padding: 4px 6px;
+        }
+
+        #myProjectTable .badge {
+          font-size: 10px;
+          padding: 2px 6px;
+        }
+
+        #myProjectTable .action-buttons .btn {
+          font-size: 10px;
+          padding: 2px 6px;
+        }
+
+        .card .card-body {
+          padding: 8px; /* card body lebih kecil */
+        }
+
+        .btn-group-sm > .btn {
+          padding: 0.2rem 0.4rem;
+          font-size: 0.75rem;
+        }
+
+        .deskripsi-cell {
+          max-width: 120px;
+        }
+
+        .btn-set-task {
+          width: 100% !important;
+          margin-top: 0.5rem;
+        }
+      }
     </style>
   </head>
 
@@ -462,215 +470,223 @@
         </div>
 
         <!-- Main content-->
-        <div class="body py-3">
-          <div class="container-xxl">
-            <!-- Page Header -->
-            <div class="row mb-4">
-              <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h3 class="fw-bold mb-0">Data Karyawan</h3>
-                  <button
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#addkaryawan"
+        <div class="body d-flex py-3">
+          <div class="body d-flex py-lg-3 py-md-2">
+            <div class="container-xxl">
+              <!-- Page Header -->
+              <div class="row align-items-center">
+                <div class="border-0 mb-4">
+                  <div
+                    class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap"
                   >
-                    <i class="icofont-plus-circle me-2"></i>Tambah Karyawan
-                  </button>
+                    <h3 class="fw-bold mb-0">Data Karyawan</h3>
+                    <div class="col-auto d-flex w-sm-100">
+                      <button
+                        type="button"
+                        class="btn btn-dark btn-set-task w-sm-100 w-100 w-md-auto"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addkaryawan"
+                      >
+                        <i class="icofont-plus-circle me-2 fs-6"></i>Tambah
+                        Karyawan
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Data Table -->
-            <div class="row clearfix g-3">
-              <div class="col-sm-12">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table
-                        id="myProjectTable"
-                        class="table table-hover align-middle mb-0"
-                        style="width: 100%"
-                      >
-                        <thead>
-                          <tr>
-                            <th>No</th>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>Divisi</th>
-                            <th>Jabatan</th>
-                            <th>Status</th>
-                            <th>Email</th>
-                            <th>Tanggal Masuk</th>
-                            <th>Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td data-label="No">01</td>
-                            <td data-label="ID">001</td>
-                            <td data-label="Nama">Bambang</td>
-                            <td data-label="Divisi">Pemasaran</td>
-                            <td data-label="Jabatan">Karyawan</td>
-                            <td data-label="Status">
-                              <span class="badge bg-success">Aktif</span>
-                            </td>
-                            <td data-label="Email">bambang@example.com</td>
-                            <td data-label="Tanggal Masuk">Agustus 2025</td>
-                            <td data-label="Aksi">
-                              <div class="action-buttons">
-                                <button
-                                  class="btn btn-outline-info btn-detail"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#detailkaryawan"
-                                  data-id="001"
-                                  title="Detail"
-                                >
-                                  <i class="icofont-eye-alt"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-primary edit-btn"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#editkaryawan"
-                                  data-id="001"
-                                  title="Edit"
-                                >
-                                  <i class="icofont-edit"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-danger deleterow"
-                                  data-id="001"
-                                  title="Hapus"
-                                >
-                                  <i class="icofont-ui-delete"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td data-label="No">02</td>
-                            <td data-label="ID">002</td>
-                            <td data-label="Nama">Siti</td>
-                            <td data-label="Divisi">Keuangan</td>
-                            <td data-label="Jabatan">Kepala Divisi</td>
-                            <td data-label="Status">
-                              <span class="badge bg-success">Aktif</span>
-                            </td>
-                            <td data-label="Email">siti@example.com</td>
-                            <td data-label="Tanggal Masuk">Agustus 2025</td>
-                            <td data-label="Aksi">
-                              <div class="action-buttons">
-                                <button
-                                  class="btn btn-outline-info btn-detail"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#detailkaryawan"
-                                  data-id="002"
-                                  title="Detail"
-                                >
-                                  <i class="icofont-eye-alt"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-primary edit-btn"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#editkaryawan"
-                                  data-id="002"
-                                  title="Edit"
-                                >
-                                  <i class="icofont-edit"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-danger deleterow"
-                                  data-id="002"
-                                  title="Hapus"
-                                >
-                                  <i class="icofont-ui-delete"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td data-label="No">03</td>
-                            <td data-label="ID">003</td>
-                            <td data-label="Nama">Andi</td>
-                            <td data-label="Divisi">Pemasaran</td>
-                            <td data-label="Jabatan">Karyawan</td>
-                            <td data-label="Status">
-                              <span class="badge bg-success">Aktif</span>
-                            </td>
-                            <td data-label="Email">andi@example.com</td>
-                            <td data-label="Tanggal Masuk">Agustus 2025</td>
-                            <td data-label="Aksi">
-                              <div class="action-buttons">
-                                <button
-                                  class="btn btn-outline-info btn-detail"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#detailkaryawan"
-                                  data-id="003"
-                                  title="Detail"
-                                >
-                                  <i class="icofont-eye-alt"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-primary edit-btn"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#editkaryawan"
-                                  data-id="003"
-                                  title="Edit"
-                                >
-                                  <i class="icofont-edit"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-danger deleterow"
-                                  data-id="003"
-                                  title="Hapus"
-                                >
-                                  <i class="icofont-ui-delete"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td data-label="No">04</td>
-                            <td data-label="ID">004</td>
-                            <td data-label="Nama">Dewi</td>
-                            <td data-label="Divisi">Keuangan</td>
-                            <td data-label="Jabatan">Karyawan</td>
-                            <td data-label="Status">
-                              <span class="badge bg-success">Aktif</span>
-                            </td>
-                            <td data-label="Email">dewi@example.com</td>
-                            <td data-label="Tanggal Masuk">Agustus 2024</td>
-                            <td data-label="Aksi">
-                              <div class="action-buttons">
-                                <button
-                                  class="btn btn-outline-info btn-detail"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#detailkaryawan"
-                                  data-id="004"
-                                  title="Detail"
-                                >
-                                  <i class="icofont-eye-alt"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-primary edit-btn"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#editkaryawan"
-                                  data-id="004"
-                                  title="Edit"
-                                >
-                                  <i class="icofont-edit"></i>
-                                </button>
-                                <button
-                                  class="btn btn-outline-danger deleterow"
-                                  data-id="004"
-                                  title="Hapus"
-                                >
-                                  <i class="icofont-ui-delete"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+              <!-- Data Table -->
+              <div class="row clearfix g-3">
+                <div class="col-sm-12">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table
+                          id="myProjectTable"
+                          class="table table-hover align-middle mb-0"
+                          style="width: 100%"
+                        >
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>ID</th>
+                              <th>Nama</th>
+                              <th>Divisi</th>
+                              <th>Jabatan</th>
+                              <th>Status</th>
+                              <th>Email</th>
+                              <th>Tanggal Masuk</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td data-label="No">01</td>
+                              <td data-label="ID">001</td>
+                              <td data-label="Nama">Bambang</td>
+                              <td data-label="Divisi">Pemasaran</td>
+                              <td data-label="Jabatan">Karyawan</td>
+                              <td data-label="Status">
+                                <span class="badge bg-success">Aktif</span>
+                              </td>
+                              <td data-label="Email">bambang@example.com</td>
+                              <td data-label="Tanggal Masuk">Agustus 2025</td>
+                              <td data-label="Aksi">
+                                <div class="action-buttons">
+                                  <button
+                                    class="btn btn-outline-info btn-detail"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detailkaryawan"
+                                    data-id="001"
+                                    title="Detail"
+                                  >
+                                    <i class="icofont-eye-alt"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary edit-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editkaryawan"
+                                    data-id="001"
+                                    title="Edit"
+                                  >
+                                    <i class="icofont-edit"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-danger deleterow"
+                                    data-id="001"
+                                    title="Hapus"
+                                  >
+                                    <i class="icofont-ui-delete"></i>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td data-label="No">02</td>
+                              <td data-label="ID">002</td>
+                              <td data-label="Nama">Siti</td>
+                              <td data-label="Divisi">Keuangan</td>
+                              <td data-label="Jabatan">Kepala Divisi</td>
+                              <td data-label="Status">
+                                <span class="badge bg-success">Aktif</span>
+                              </td>
+                              <td data-label="Email">siti@example.com</td>
+                              <td data-label="Tanggal Masuk">Agustus 2025</td>
+                              <td data-label="Aksi">
+                                <div class="action-buttons">
+                                  <button
+                                    class="btn btn-outline-info btn-detail"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detailkaryawan"
+                                    data-id="002"
+                                    title="Detail"
+                                  >
+                                    <i class="icofont-eye-alt"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary edit-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editkaryawan"
+                                    data-id="002"
+                                    title="Edit"
+                                  >
+                                    <i class="icofont-edit"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-danger deleterow"
+                                    data-id="002"
+                                    title="Hapus"
+                                  >
+                                    <i class="icofont-ui-delete"></i>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td data-label="No">03</td>
+                              <td data-label="ID">003</td>
+                              <td data-label="Nama">Andi</td>
+                              <td data-label="Divisi">Pemasaran</td>
+                              <td data-label="Jabatan">Karyawan</td>
+                              <td data-label="Status">
+                                <span class="badge bg-success">Aktif</span>
+                              </td>
+                              <td data-label="Email">andi@example.com</td>
+                              <td data-label="Tanggal Masuk">Agustus 2025</td>
+                              <td data-label="Aksi">
+                                <div class="action-buttons">
+                                  <button
+                                    class="btn btn-outline-info btn-detail"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detailkaryawan"
+                                    data-id="003"
+                                    title="Detail"
+                                  >
+                                    <i class="icofont-eye-alt"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary edit-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editkaryawan"
+                                    data-id="003"
+                                    title="Edit"
+                                  >
+                                    <i class="icofont-edit"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-danger deleterow"
+                                    data-id="003"
+                                    title="Hapus"
+                                  >
+                                    <i class="icofont-ui-delete"></i>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td data-label="No">04</td>
+                              <td data-label="ID">004</td>
+                              <td data-label="Nama">Dewi</td>
+                              <td data-label="Divisi">Keuangan</td>
+                              <td data-label="Jabatan">Karyawan</td>
+                              <td data-label="Status">
+                                <span class="badge bg-success">Aktif</span>
+                              </td>
+                              <td data-label="Email">dewi@example.com</td>
+                              <td data-label="Tanggal Masuk">Agustus 2024</td>
+                              <td data-label="Aksi">
+                                <div class="action-buttons">
+                                  <button
+                                    class="btn btn-outline-info btn-detail"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detailkaryawan"
+                                    data-id="004"
+                                    title="Detail"
+                                  >
+                                    <i class="icofont-eye-alt"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary edit-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editkaryawan"
+                                    data-id="004"
+                                    title="Edit"
+                                  >
+                                    <i class="icofont-edit"></i>
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-danger deleterow"
+                                    data-id="004"
+                                    title="Hapus"
+                                  >
+                                    <i class="icofont-ui-delete"></i>
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

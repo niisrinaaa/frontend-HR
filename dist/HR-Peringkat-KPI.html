@@ -131,15 +131,36 @@
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
+      /* Default (desktop & tablet) */
+      .card.stat-card .card-body {
+        padding: 1rem;
+        min-height: 100px;
+      }
 
-      @media (max-width: 991.98px) {
-        .sidebar {
-          position: fixed;
-          left: -250px;
-          transition: left 0.3s ease;
+      /* HP (≤576px) */
+      @media (max-width: 576px) {
+        .card.stat-card {
+          font-size: 0.75rem; /* teks kecil */
         }
-        .sidebar.show {
-          left: 0;
+
+        .card.stat-card .card-body {
+          padding: 0.3rem 0.4rem; /* padding super kecil */
+          min-height: 60px; /* tinggi card lebih pendek */
+        }
+
+        .card.stat-card i {
+          font-size: 1rem; /* ikon kecil */
+          margin-right: 0.25rem;
+        }
+
+        .card.stat-card h6 {
+          font-size: 0.65rem;
+          margin-bottom: 0;
+        }
+
+        .card.stat-card span {
+          font-size: 0.7rem;
+          line-height: 1.1;
         }
       }
     </style>
@@ -448,8 +469,8 @@
                     <!-- Card Informasi -->
                     <div class="container-fluid px-0">
                       <div class="row g-3 mb-3">
-                        <div class="col-md-3 col-sm-6">
-                          <div class="card bg-primary h-100 w-100">
+                        <div class="col-6 col-md-3">
+                          <div class="card bg-primary h-100 w-100 stat-card">
                             <div
                               class="card-body text-white d-flex align-items-center"
                             >
@@ -462,8 +483,8 @@
                           </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6">
-                          <div class="card bg-primary h-100 w-100">
+                        <div class="col-6 col-md-3">
+                          <div class="card bg-primary h-100 w-100 stat-card">
                             <div
                               class="card-body text-white d-flex align-items-center"
                             >
@@ -476,8 +497,8 @@
                           </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6">
-                          <div class="card bg-primary h-100 w-100">
+                        <div class="col-6 col-md-3">
+                          <div class="card bg-primary h-100 w-100 stat-card">
                             <div
                               class="card-body text-white d-flex align-items-center"
                             >
@@ -490,8 +511,8 @@
                           </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6">
-                          <div class="card bg-primary h-100 w-100">
+                        <div class="col-6 col-md-3">
+                          <div class="card bg-primary h-100 w-100 stat-card">
                             <div
                               class="card-body text-white d-flex align-items-center"
                             >
@@ -508,17 +529,14 @@
 
                     <!-- Dropdowns -->
                     <div class="container-xxl mt-2">
-                      <div
-                        class="card shadow-sm w-100"
-                        style="max-height: 150px"
-                      >
+                      <div class="card shadow-sm w-100">
                         <div class="card-header bg-primary text-white py-2">
                           <h5 class="mb-0">Filter Data</h5>
                         </div>
                         <div class="card-body p-2">
                           <form class="row g-2">
                             <!-- Bulan -->
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-6 col-md-3">
                               <label class="form-label small mb-1">Bulan</label>
                               <select
                                 id="filterBulan"
@@ -532,7 +550,7 @@
                             </div>
 
                             <!-- Tahun -->
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-6 col-md-3">
                               <label class="form-label small mb-1">Tahun</label>
                               <select
                                 id="filterTahun"
@@ -546,7 +564,7 @@
                             </div>
 
                             <!-- Divisi -->
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-6 col-md-3">
                               <label class="form-label small mb-1"
                                 >Divisi</label
                               >
@@ -562,7 +580,7 @@
                             </div>
 
                             <!-- Jabatan -->
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-6 col-md-3">
                               <label class="form-label small mb-1"
                                 >Jabatan</label
                               >
